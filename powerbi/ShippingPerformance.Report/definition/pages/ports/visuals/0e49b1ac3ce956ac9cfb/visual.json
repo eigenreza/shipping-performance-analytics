@@ -1,0 +1,123 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "0e49b1ac3ce956ac9cfb",
+  "position": {
+    "x": 408,
+    "y": 206,
+    "z": 10000,
+    "width": 440,
+    "height": 478,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Port"
+                    }
+                  },
+                  "Property": "Port"
+                }
+              },
+              "queryRef": "Port.Port",
+              "nativeQueryRef": "Port"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Port Calls"
+                }
+              },
+              "queryRef": "Metrics.Port Calls",
+              "nativeQueryRef": "Port Calls",
+              "displayName": "Calls"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Median Berth Time (h)"
+                }
+              },
+              "queryRef": "Metrics.Median Berth Time (h)",
+              "nativeQueryRef": "Median Berth Time (h)",
+              "displayName": "Median h at berth"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Share of Calls with Waiting"
+                }
+              },
+              "queryRef": "Metrics.Share of Calls with Waiting",
+              "nativeQueryRef": "Share of Calls with Waiting",
+              "displayName": "Waited"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Metrics"
+                  }
+                },
+                "Property": "Port Calls"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Time in port'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

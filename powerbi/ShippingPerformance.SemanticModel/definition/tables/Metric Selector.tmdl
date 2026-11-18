@@ -1,0 +1,62 @@
+/// Field parameter: lets the reader pick which metric a visual shows.
+table 'Metric Selector'
+	lineageTag: c699f07b-70cd-566e-be96-97c66cfd9d93
+
+	column 'Metric Selector'
+		dataType: string
+		lineageTag: 5b759d1c-c65b-5671-b2a5-c7d403672884
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Metric Selector Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Metric Selector Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Metric Selector Fields'
+		dataType: string
+		isHidden
+		lineageTag: aea0023d-0082-56e2-9b4e-96023a147c9f
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Metric Selector Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["UNNECESSARY_COLUMNS"]}
+
+	column 'Metric Selector Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d188a218-e63d-5e02-a47e-43ffa3120e56
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Metric Selector' = calculated
+		mode: import
+		source =
+				{
+				    ("CO2 (t)", NAMEOF(Metrics[CO2 (t)]), 0),
+				    ("Fuel (t)", NAMEOF(Metrics[Fuel (t)]), 1),
+				    ("Distance (nm)", NAMEOF(Metrics[Distance (nm)]), 2),
+				    ("CO2 per nm (kg)", NAMEOF(Metrics[CO2 per nm (kg)]), 3),
+				    ("Average Speed (kn)", NAMEOF(Metrics[Average Speed (kn)]), 4),
+				    ("CO2 in EU ETS Scope (t)", NAMEOF(Metrics[CO2 in EU ETS Scope (t)]), 5),
+				    ("EU ETS Cost (EUR)", NAMEOF(Metrics[EU ETS Cost (EUR)]), 6),
+				    ("Share Rated D or E", NAMEOF(Metrics[Share Rated D or E]), 7),
+				    ("Average CII Ratio", NAMEOF(Metrics[Average CII Ratio]), 8),
+				    ("Ships Reporting", NAMEOF(Metrics[Ships Reporting]), 9)
+				}
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["ENSURE_TABLES_HAVE_RELATIONSHIPS", "REDUCE_USAGE_OF_CALCULATED_TABLES", "DAX_MEASURES_UNQUALIFIED"]}
+

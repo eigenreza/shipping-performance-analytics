@@ -1,0 +1,100 @@
+{
+  "question": "What would slower steaming save?",
+  "base_year": 2025,
+  "ships": 750,
+  "co2_t": 9649959.0,
+  "fuel_t": 3114964.0,
+  "ets_scope_share": 0.6909,
+  "fuel_price_eur_per_t": 550.0,
+  "carbon_price_eur_per_t": 79.11,
+  "carbon_price_basis": "average daily EU ETS price in 2026 up to 2026-09-30",
+  "carbon_price_base_year_eur_per_t": 74.94,
+  "relations": {
+    "mrv_estimate": {
+      "label": "Estimated from MRV data (conservative)",
+      "elasticity": 0.247,
+      "low": 0.1715,
+      "high": 0.3265,
+      "scenarios": [
+        {
+          "speed_change": -0.05,
+          "co2_saved_t": 121466.0,
+          "co2_saved_low_t": 84507.0,
+          "co2_saved_high_t": 160251.0,
+          "co2_saved_share": 0.0126,
+          "co2_saved_share_low": 0.0088,
+          "co2_saved_share_high": 0.0166,
+          "fuel_cost_saved_eur": 21564740.0,
+          "ets_cost_saved_eur": 6638729.0,
+          "extra_days_per_ship": 6.3
+        },
+        {
+          "speed_change": -0.1,
+          "co2_saved_t": 247846.0,
+          "co2_saved_low_t": 172782.0,
+          "co2_saved_high_t": 326287.0,
+          "co2_saved_share": 0.0257,
+          "co2_saved_share_low": 0.0179,
+          "co2_saved_share_high": 0.0338,
+          "fuel_cost_saved_eur": 44001906.0,
+          "ets_cost_saved_eur": 13546036.0,
+          "extra_days_per_ship": 13.2
+        },
+        {
+          "speed_change": -0.15,
+          "co2_saved_t": 379629.0,
+          "co2_saved_low_t": 265219.0,
+          "co2_saved_high_t": 498659.0,
+          "co2_saved_share": 0.0393,
+          "co2_saved_share_low": 0.0275,
+          "co2_saved_share_high": 0.0517,
+          "fuel_cost_saved_eur": 67398358.0,
+          "ets_cost_saved_eur": 20748660.0,
+          "extra_days_per_ship": 21.0
+        }
+      ]
+    },
+    "engineering": {
+      "label": "Engineering rule: fuel per mile rises with speed squared",
+      "elasticity": 2.0,
+      "scenarios": [
+        {
+          "speed_change": -0.05,
+          "co2_saved_t": 940871.0,
+          "co2_saved_low_t": 940871.0,
+          "co2_saved_high_t": 940871.0,
+          "co2_saved_share": 0.0975,
+          "co2_saved_share_low": 0.0975,
+          "co2_saved_share_high": 0.0975,
+          "fuel_cost_saved_eur": 167039931.0,
+          "ets_cost_saved_eur": 51423429.0,
+          "extra_days_per_ship": 6.3
+        },
+        {
+          "speed_change": -0.1,
+          "co2_saved_t": 1833492.0,
+          "co2_saved_low_t": 1833492.0,
+          "co2_saved_high_t": 1833492.0,
+          "co2_saved_share": 0.19,
+          "co2_saved_share_low": 0.19,
+          "co2_saved_share_high": 0.19,
+          "fuel_cost_saved_eur": 325513712.0,
+          "ets_cost_saved_eur": 100209759.0,
+          "extra_days_per_ship": 13.2
+        },
+        {
+          "speed_change": -0.15,
+          "co2_saved_t": 2677864.0,
+          "co2_saved_low_t": 2677864.0,
+          "co2_saved_high_t": 2677864.0,
+          "co2_saved_share": 0.2775,
+          "co2_saved_share_low": 0.2775,
+          "co2_saved_share_high": 0.2775,
+          "fuel_cost_saved_eur": 475421343.0,
+          "ets_cost_saved_eur": 146358990.0,
+          "extra_days_per_ship": 21.0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,137 @@
+/// Fact table. Grain: one AIS-derived port call in Norway (ship, port, berth period), August to September 2026.
+table 'Port Calls'
+	lineageTag: 1d7d9962-4889-548e-98c8-e33227a800ce
+
+	column ship_version_key
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: 7cbf098a-8078-52af-811d-56a4ca1f873b
+		summarizeBy: none
+		sourceColumn: ship_version_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_id
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: 93fde979-bea2-59c5-a963-afa1cbd562b1
+		summarizeBy: none
+		sourceColumn: segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column port_id
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: e78467a3-5180-5118-b7da-76dca7e88c11
+		summarizeBy: none
+		sourceColumn: port_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_id
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: 3c4a4e35-3840-53b3-859c-5e7b3644f1ef
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Arrival in the port area: start of anchorage waiting, or berthing if there was no wait.
+	column 'Arrival (UTC)'
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn
+		lineageTag: 5646efa2-708e-5579-923e-19ce7c2fef9c
+		summarizeBy: none
+		sourceColumn: arrival_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Start of the first berth stop.
+	column 'Berthing (UTC)'
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn
+		lineageTag: bcf5c9d7-7858-5093-8bd4-2415f22e630e
+		summarizeBy: none
+		sourceColumn: berth_start_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	/// End of the last berth stop.
+	column 'Departure (UTC)'
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn
+		lineageTag: 211b91b9-9b8e-5996-a785-8da66e558b68
+		summarizeBy: none
+		sourceColumn: departure_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column waiting_hours
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: bc01527f-2b9c-5c70-8c2e-34c0efd07509
+		summarizeBy: none
+		sourceColumn: waiting_hours
+
+		annotation SummarizationSetBy = Automatic
+
+	column berth_hours
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 1ec29555-8856-5a69-bcb0-b8acfe8eb8bc
+		summarizeBy: none
+		sourceColumn: berth_hours
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True when the ship anchored before berthing.
+	column 'Had Waiting'
+		dataType: boolean
+		lineageTag: 603035ee-5805-5dd4-85b6-320aee431517
+		summarizeBy: none
+		sourceColumn: has_waiting
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True when the call starts or ends at the edge of the AIS window.
+	column 'Cut by Data Window'
+		dataType: boolean
+		lineageTag: 49c2ec49-2fbd-5557-96a4-8a2129a9c354
+		summarizeBy: none
+		sourceColumn: is_window_edge
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True when Kystverket's own port call records show the same ship arriving at the same port within 12 hours.
+	column 'Confirmed by Kystverket'
+		dataType: boolean
+		lineageTag: 61345441-3ad0-5b1e-8a2a-aeab8f4a9fa7
+		summarizeBy: none
+		sourceColumn: is_kystverket_matched
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Port Calls' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(GoldFile("fct_port_call.parquet")),
+				    Selected = Table.SelectColumns(Source, {"ship_version_key", "segment_id", "port_id", "date_id", "arrival_utc", "berth_start_utc", "departure_utc", "waiting_hours", "berth_hours", "has_waiting", "is_window_edge", "is_kystverket_matched"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"waiting_hours", Currency.Type}, {"berth_hours", Currency.Type}, {"ship_version_key", Int64.Type}, {"segment_id", Int64.Type}, {"port_id", Int64.Type}, {"date_id", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

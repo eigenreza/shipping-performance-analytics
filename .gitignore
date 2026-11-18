@@ -1,0 +1,57 @@
+# Private working notes
+_admin/
+
+# Secrets and environment files
+.env
+*.env
+.env.*
+*.pem
+*.key
+*.pfx
+secrets.*
+credentials.*
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# Node and front-end builds
+node_modules/
+dist/
+
+# Data that is downloaded or rebuilt locally
+data/raw/
+data/work/
+data/cache/
+data/exports/delta/
+*.duckdb
+*.duckdb.wal
+
+# dbt artifacts
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+logs/
+
+# Power BI local caches and user settings
+**/.pbi/cache.abf
+**/.pbi/localSettings.json
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+bin/
+obj/
+
+# Local Power BI exports before metadata cleaning
+powerbi/exports/raw/
+
+# Deployment build output
+deploy/build/

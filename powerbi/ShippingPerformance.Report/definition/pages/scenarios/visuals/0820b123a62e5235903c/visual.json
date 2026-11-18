@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "0820b123a62e5235903c",
+  "position": {
+    "x": 16,
+    "y": 52,
+    "z": 2000,
+    "width": 1248,
+    "height": 74,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "What this is: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "A what-if calculator: what a lower speed would save in CO2, fuel cost and EU ETS cost, and what it costs in extra days at sea.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "How to use it: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Move the sliders for speed change, carbon price and fuel price, and pick a speed relation. The cards recalculate at once for the selected year and segment.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "What to notice: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Annual MRV data show only a weak speed effect (the conservative case). The engineering rule gives the upper reference. The price is time: more days at sea per ship.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

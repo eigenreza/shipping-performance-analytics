@@ -1,0 +1,298 @@
+{
+  "model": "llama3.2:3b",
+  "label": "Llama 3.2 3B (local, Ollama)",
+  "pages": [
+    {
+      "page": "overview",
+      "model": "llama3.2:3b",
+      "latency_s": 10.998,
+      "input_tokens": 338,
+      "output_tokens": 138,
+      "findings": [
+        {
+          "text": "The total CO2 emissions from Ro-ro ships decreased by 2.5% from 2023 to 2025, while vehicle carriers saw a 2.1% increase in emissions over the same period.",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "2.5%",
+              "supported": false,
+              "matched": null
+            },
+            {
+              "text": "2.1%",
+              "supported": true,
+              "matched": 2.075221
+            }
+          ]
+        },
+        {
+          "text": "The average ETS cost per Ro-ro ship increased by 85.5% from 2023 to 2025, while vehicle carriers saw a 100.3% increase in ETS cost over the same period.",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "85.5%",
+              "supported": false,
+              "matched": null
+            },
+            {
+              "text": "100.3%",
+              "supported": false,
+              "matched": null
+            }
+          ]
+        },
+        {
+          "text": "The number of ships in the Ro-ro segment increased by 4.7% from 2023 to 2025, while vehicle carriers saw a 15.4% increase in the number of ships over the same period.",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "4.7%",
+              "supported": false,
+              "matched": null
+            },
+            {
+              "text": "15.4%",
+              "supported": false,
+              "matched": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "efficiency",
+      "model": "llama3.2:3b",
+      "latency_s": 9.612,
+      "input_tokens": 431,
+      "output_tokens": 96,
+      "findings": [
+        {
+          "text": "\"The Ro-ro ship segment has reduced its CO2 emissions per nautical mile by 2.6% from 2021 to 2025.\",",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "2.6%",
+              "supported": true,
+              "matched": 2.585604
+            }
+          ]
+        },
+        {
+          "text": "\"The Vehicle carrier segment has reduced its CO2 emissions per nautical mile by 6.3% from 2021 to 2025.\",",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "6.3%",
+              "supported": false,
+              "matched": null
+            }
+          ]
+        },
+        {
+          "text": "\"The Ro-ro ship segment's CO2 emissions per nautical mile decreased by 10.3% from 2021 to 2023.\"",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "10.3%",
+              "supported": true,
+              "matched": -10.330347
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "ratings",
+      "model": "llama3.2:3b",
+      "latency_s": 11.99,
+      "input_tokens": 337,
+      "output_tokens": 127,
+      "findings": [
+        {
+          "text": "\"The Ro-ro ship segment has seen a 6% increase in rated ship-years from 2023 to 2025, while the Vehicle carrier segment has seen a 4% decrease over the same period.\",",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "6%",
+              "supported": true,
+              "matched": 6.0
+            },
+            {
+              "text": "4%",
+              "supported": true,
+              "matched": 4.2
+            }
+          ]
+        },
+        {
+          "text": "\"The Vehicle carrier segment has a higher share of rated ship-years in 2025 (31.1%) compared to the Ro-ro ship segment (25.4%).\",",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "31.1%",
+              "supported": true,
+              "matched": 31.048387
+            },
+            {
+              "text": "25.4%",
+              "supported": true,
+              "matched": 25.4
+            }
+          ]
+        },
+        {
+          "text": "\"The Ro-ro ship segment has seen a 3% decrease in share_a_or_b from 2023 to 2025, while the Vehicle carrier segment has seen a 7% increase over the same period.\"",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "3%",
+              "supported": true,
+              "matched": 2.755906
+            },
+            {
+              "text": "7%",
+              "supported": true,
+              "matched": 7.086614
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "ports",
+      "model": "llama3.2:3b",
+      "latency_s": 9.695,
+      "input_tokens": 359,
+      "output_tokens": 98,
+      "findings": [
+        {
+          "text": "\"The top port on the Norwegian coast, by calls, had 87 calls, which is 97.7% more than the second port.\",",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "87",
+              "supported": true,
+              "matched": 87.0
+            },
+            {
+              "text": "97.7%",
+              "supported": false,
+              "matched": null
+            }
+          ]
+        },
+        {
+          "text": "\"The port with the longest median berth hours had 8.5 hours, which is 193.5% longer than the port with the shortest median berth hours.\",",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "8.5",
+              "supported": true,
+              "matched": 8.5
+            },
+            {
+              "text": "193.5%",
+              "supported": false,
+              "matched": null
+            }
+          ]
+        },
+        {
+          "text": "\"The port with the highest share with waiting had 0.0%, which is a 0.0% decrease from the previous year.\"",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "0.0%",
+              "supported": true,
+              "matched": 0.028571
+            },
+            {
+              "text": "0.0%",
+              "supported": true,
+              "matched": 0.028571
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "carbon_price",
+      "model": "llama3.2:3b",
+      "latency_s": 11.256,
+      "input_tokens": 349,
+      "output_tokens": 123,
+      "findings": [
+        {
+          "text": "\"The average EU ETS allowance price has increased by 44.6% from 2022 to 2024, rising from \u20ac81.35 to \u20ac66.58 per tonne.\",",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "44.6%",
+              "supported": true,
+              "matched": 44.55
+            },
+            {
+              "text": "81.35",
+              "supported": true,
+              "matched": 81.35
+            },
+            {
+              "text": "66.58",
+              "supported": true,
+              "matched": 66.58
+            }
+          ]
+        },
+        {
+          "text": "\"The highest recorded EU ETS allowance price in 2023 was \u20ac100.34, a 15.1% increase from the previous year's highest price of \u20ac88.88.\",",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "100.34",
+              "supported": true,
+              "matched": 100.34
+            },
+            {
+              "text": "15.1%",
+              "supported": false,
+              "matched": null
+            },
+            {
+              "text": "88.88",
+              "supported": true,
+              "matched": 88.88
+            }
+          ]
+        },
+        {
+          "text": "\"The lowest recorded EU ETS allowance price in 2024 was \u20ac52.21, a 10.3% decrease from the previous year's lowest price of \u20ac58.3.\"",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "52.21",
+              "supported": true,
+              "matched": 52.21
+            },
+            {
+              "text": "10.3%",
+              "supported": true,
+              "matched": 10.272277
+            },
+            {
+              "text": "58.3",
+              "supported": true,
+              "matched": 58.3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stopped": null,
+  "findings": 15,
+  "supported": 8,
+  "unsupported": 7,
+  "no_numbers": 0,
+  "share_supported": 0.533,
+  "share_unsupported": 0.467
+}

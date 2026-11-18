@@ -1,0 +1,1371 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "label": "Gemini 3.5 Flash Lite (free tier)",
+  "items": [
+    {
+      "id": "D01",
+      "split": "dev",
+      "question": "What was the total CO2 emitted by vehicle carriers in 2025, in tonnes?",
+      "type": "number",
+      "gold": 4300769.67914,
+      "answer": "4300769.67914",
+      "correct": true,
+      "text": "In 2025, vehicle carriers emitted a total of 4300769.67914 tonnes of CO2.\n\nANSWER: 4300769.67914",
+      "sql": [
+        "select sum(f.co2_t) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Vehicle carrier' and f.reporting_year >= 2025 and f.reporting_year <= 2025"
+      ],
+      "tool_calls": [
+        {
+          "name": "get_metric",
+          "args": {
+            "metric": "co2_t",
+            "filters": {
+              "segment": "Vehicle carrier"
+            },
+            "year_to": 2025,
+            "year_from": 2025
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 10.21,
+      "input_tokens": 2804,
+      "output_tokens": 95
+    },
+    {
+      "id": "D02",
+      "split": "dev",
+      "question": "How many ro-ro ships reported to EU MRV for 2024?",
+      "type": "number",
+      "gold": 229,
+      "answer": "229",
+      "correct": true,
+      "text": "There were 229 ro-ro ships that reported to the EU MRV scheme for the reporting year 2024.\n\nANSWER: 229",
+      "sql": [
+        "select count(distinct f.ship_key) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Ro-ro ship' and f.reporting_year >= 2024 and f.reporting_year <= 2024"
+      ],
+      "tool_calls": [
+        {
+          "name": "get_metric",
+          "args": {
+            "metric": "ship_count",
+            "year_to": 2024,
+            "filters": {
+              "segment": "Ro-ro ship"
+            },
+            "year_from": 2024
+          },
+          "ok": false
+        },
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "year_to": 2024,
+            "metric": "ships_reporting",
+            "filters": {
+              "segment": "Ro-ro ship"
+            },
+            "year_from": 2024
+          },
+          "ok": true
+        }
+      ],
+      "steps": 4,
+      "error": null,
+      "latency_s": 2.65,
+      "input_tokens": 7313,
+      "output_tokens": 139
+    },
+    {
+      "id": "D03",
+      "split": "dev",
+      "question": "What was the average EU ETS allowance price in 2025, in euros per tonne?",
+      "type": "number",
+      "gold": 74.937178,
+      "answer": "74.9371780821917",
+      "correct": true,
+      "text": "The average EU ETS allowance price in 2025 was 74.94 euros per tonne.\nANSWER: 74.9371780821917",
+      "sql": [
+        "SELECT AVG(eua_price_eur_per_t) FROM marts.fct_daily_carbon_price WHERE DATE_PART('year', date_key) = 2025"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT avg(eua_price_eur_per_t) FROM marts.fct_daily_carbon_price WHERE date_part('year', date_key) = 2025"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 15.95,
+      "input_tokens": 2872,
+      "output_tokens": 100
+    },
+    {
+      "id": "D04",
+      "split": "dev",
+      "question": "What was the CO2 per nautical mile of vehicle carriers in 2023, in kg?",
+      "type": "number",
+      "gold": 311.529523,
+      "answer": "311.529523026733",
+      "correct": true,
+      "text": "The CO2 per nautical mile for vehicle carriers in 2023 was 311.53 kg per nautical mile.\n\nANSWER: 311.529523026733",
+      "sql": [
+        "select sum(case when f.is_quality_ok then f.co2_t end) * 1000 / sum(case when f.is_quality_ok then f.distance_nm end) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Vehicle carrier' and f.reporting_year >= 2023 and f.reporting_year <= 2023"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "year_to": 2023,
+            "filters": {
+              "segment": "Vehicle carrier"
+            },
+            "metric": "co2_per_nm_kg",
+            "year_from": 2023
+          },
+          "ok": true
+        }
+      ],
+      "steps": 3,
+      "error": null,
+      "latency_s": 7.38,
+      "input_tokens": 5756,
+      "output_tokens": 108
+    },
+    {
+      "id": "D05",
+      "split": "dev",
+      "question": "Which Norwegian port had the most port calls by fleet ships?",
+      "type": "text",
+      "gold": "Stavanger",
+      "answer": "Stavanger",
+      "correct": true,
+      "text": "Stavanger had the most port calls by fleet ships among all Norwegian ports during August to September 2026.\n\nANSWER: Stavanger",
+      "sql": [
+        "SELECT p.port_name FROM marts.fct_port_call AS f JOIN marts.dim_port AS p ON f.port_key = p.port_key GROUP BY p.port_name ORDER BY COUNT(*) DESC LIMIT 1"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT p.port_name FROM marts.fct_port_call f JOIN marts.dim_port p ON f.port_key = p.port_key GROUP BY p.port_name ORDER BY count(*) DESC LIMIT 1"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 1.73,
+      "input_tokens": 2853,
+      "output_tokens": 95
+    },
+    {
+      "id": "D06",
+      "split": "dev",
+      "question": "What share of rated ro-ro ship-years had a CII rating of D or E in 2025?",
+      "type": "number",
+      "gold": 0.355856,
+      "answer": "0.355855855855856",
+      "correct": true,
+      "text": "In 2025, about 35.6% of rated ro-ro ship-years received a CII rating of D or E.\nANSWER: 0.355855855855856",
+      "sql": [
+        "SELECT SUM(CASE WHEN cii_rating IN ('D', 'E') THEN 1 ELSE 0 END) * 1.0 / COUNT(*) AS share FROM marts.fct_ship_year_emissions AS f JOIN marts.dim_ship AS d ON f.ship_version_key = d.ship_version_key WHERE f.reporting_year = 2025 AND f.segment_key = 'Ro-ro ship' AND NOT f.cii_rating IS NULL"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT \n  sum(CASE WHEN cii_rating IN ('D', 'E') THEN 1 ELSE 0 END) * 1.0 / count(*) AS share\nFROM marts.fct_ship_year_emissions f\nJOIN marts.dim_ship d ON f.ship_version_key = d.ship_version_key\nWHERE f.reporting_year = 2025 \n  AND f.segment_key = 'Ro-ro ship'\n  AND f.cii_rating IS NOT NULL"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 2.28,
+      "input_tokens": 3008,
+      "output_tokens": 182
+    },
+    {
+      "id": "D07",
+      "split": "dev",
+      "question": "What was the total EU ETS cost of the whole fleet for 2024, in euros?",
+      "type": "number",
+      "gold": 174736184.503947,
+      "answer": "174736184.503947",
+      "correct": true,
+      "text": "The total EU ETS cost for the whole fleet in 2024 was 174736184.50 euros.\n\nANSWER: 174736184.503947",
+      "sql": [
+        "select sum(f.ets_cost_eur) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.reporting_year >= 2024 and f.reporting_year <= 2024"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "metric": "ets_cost_eur",
+            "year_to": 2024,
+            "year_from": 2024
+          },
+          "ok": true
+        }
+      ],
+      "steps": 3,
+      "error": null,
+      "latency_s": 5.89,
+      "input_tokens": 5738,
+      "output_tokens": 99
+    },
+    {
+      "id": "D08",
+      "split": "dev",
+      "question": "In which year between 2018 and 2025 was the average EU ETS allowance price highest?",
+      "type": "text",
+      "gold": "2023",
+      "answer": "2023",
+      "correct": true,
+      "text": "The average EU ETS allowance price between 2018 and 2025 was highest in 2023, with a mean price of approximately 85.30 EUR per tonne.\nANSWER: 2023",
+      "sql": [
+        "SELECT year, AVG(eua_price_eur_per_t) AS avg_price FROM marts.fct_daily_carbon_price JOIN marts.dim_date ON fct_daily_carbon_price.date_key = dim_date.date_key WHERE year BETWEEN 2018 AND 2025 GROUP BY year ORDER BY avg_price DESC LIMIT 1"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT year, AVG(eua_price_eur_per_t) AS avg_price FROM marts.fct_daily_carbon_price JOIN marts.dim_date ON fct_daily_carbon_price.date_key = dim_date.date_key WHERE year BETWEEN 2018 AND 2025 GROUP BY year ORDER BY avg_price DESC LIMIT 1"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 2.48,
+      "input_tokens": 2963,
+      "output_tokens": 151
+    },
+    {
+      "id": "D09",
+      "split": "dev",
+      "question": "What was the average speed of vehicle carriers in 2025, in knots?",
+      "type": "number",
+      "gold": 14.101632,
+      "answer": "14.1016315183862",
+      "correct": true,
+      "text": "The average speed of vehicle carriers in 2025 was 14.1 knots.\n\nANSWER: 14.1016315183862",
+      "sql": [
+        "select sum(case when f.is_quality_ok then f.distance_nm end) / sum(case when f.is_quality_ok then f.hours_at_sea end) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Vehicle carrier' and f.reporting_year >= 2025 and f.reporting_year <= 2025"
+      ],
+      "tool_calls": [
+        {
+          "name": "get_metric",
+          "args": {
+            "year_from": 2025,
+            "year_to": 2025,
+            "filters": {
+              "segment": "Vehicle carrier"
+            },
+            "metric": "avg_speed_kn"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 1.93,
+      "input_tokens": 2805,
+      "output_tokens": 87
+    },
+    {
+      "id": "D10",
+      "split": "dev",
+      "question": "How many vehicle carriers got a worse CII rating in 2025 than in 2024?",
+      "type": "number",
+      "gold": 93,
+      "answer": "93",
+      "correct": true,
+      "text": "A total of 93 vehicle carriers received a worse CII rating in 2025 compared to their rating in 2024.\n\nANSWER: 93",
+      "sql": [
+        "SELECT COUNT(DISTINCT f2025.ship_key) AS cnt FROM marts.fct_ship_year_emissions AS f2025 JOIN marts.fct_ship_year_emissions AS f2024 ON f2025.ship_key = f2024.ship_key AND f2024.reporting_year = 2024 WHERE f2025.reporting_year = 2025 AND f2025.segment_key = 'Vehicle carrier' AND f2025.is_rating_worse = TRUE"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT count(DISTINCT f2025.ship_key) as cnt\nFROM marts.fct_ship_year_emissions f2025\nJOIN marts.fct_ship_year_emissions f2024 ON f2025.ship_key = f2024.ship_key AND f2024.reporting_year = 2024\nWHERE f2025.reporting_year = 2025\n  AND f2025.segment_key = 'Vehicle carrier'\n  AND f2025.is_rating_worse = true"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 4.56,
+      "input_tokens": 3043,
+      "output_tokens": 191
+    },
+    {
+      "id": "T01",
+      "split": "test",
+      "question": "How much fuel did ro-ro ships burn in 2022, in tonnes?",
+      "type": "number",
+      "gold": 1790572.04154,
+      "answer": "1790572.04154",
+      "correct": true,
+      "text": "Ro-ro ships burned 1790572.04154 tonnes of fuel in 2022.\nANSWER: 1790572.04154",
+      "sql": [
+        "select sum(f.fuel_t) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Ro-ro ship' and f.reporting_year >= 2022 and f.reporting_year <= 2022"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "metric": "fuel_t",
+            "filters": {
+              "segment": "Ro-ro ship"
+            },
+            "year_to": 2022,
+            "year_from": 2022
+          },
+          "ok": true
+        }
+      ],
+      "steps": 3,
+      "error": null,
+      "latency_s": 5.37,
+      "input_tokens": 5737,
+      "output_tokens": 103
+    },
+    {
+      "id": "T02",
+      "split": "test",
+      "question": "What was the total CO2 of the whole fleet (both segments) in 2019, in tonnes?",
+      "type": "number",
+      "gold": 11034306.3768,
+      "answer": "11034306.3768",
+      "correct": true,
+      "text": "The total CO2 emissions of the whole fleet across both segments in 2019 was 11034306.3768 tonnes.\n\nANSWER: 11034306.3768",
+      "sql": [
+        "select sum(f.co2_t) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.reporting_year >= 2019 and f.reporting_year <= 2019"
+      ],
+      "tool_calls": [
+        {
+          "name": "get_metric",
+          "args": {
+            "year_to": 2019,
+            "year_from": 2019,
+            "metric": "co2_t"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 1.92,
+      "input_tokens": 2803,
+      "output_tokens": 89
+    },
+    {
+      "id": "T03",
+      "split": "test",
+      "question": "By what percentage did total CO2 of vehicle carriers change from 2019 to 2020?",
+      "type": "number",
+      "gold": -0.103564,
+      "answer": "-10.356443206792",
+      "correct": true,
+      "text": "Total CO2 emissions of vehicle carriers decreased by 10.36% from 2019 to 2020.\nANSWER: -10.356443206792",
+      "sql": [
+        "select sum(f.co2_t) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Vehicle carrier' and f.reporting_year >= 2019 and f.reporting_year <= 2019",
+        "select sum(f.co2_t) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Vehicle carrier' and f.reporting_year >= 2020 and f.reporting_year <= 2020",
+        "SELECT ((4321034.5817 - 4820239.9997) / 4820239.9997) * 100 AS pct_change"
+      ],
+      "tool_calls": [
+        {
+          "name": "get_metric",
+          "args": {
+            "year_to": 2019,
+            "filters": {
+              "segment": "Vehicle carrier"
+            },
+            "year_from": 2019,
+            "metric": "co2_t"
+          },
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "filters": {
+              "segment": "Vehicle carrier"
+            },
+            "year_from": 2020,
+            "metric": "co2_t",
+            "year_to": 2020
+          },
+          "ok": true
+        },
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT ((4321034.5817 - 4820239.9997) / 4820239.9997) * 100 AS pct_change"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 4,
+      "error": null,
+      "latency_s": 3.66,
+      "input_tokens": 6050,
+      "output_tokens": 208
+    },
+    {
+      "id": "T04",
+      "split": "test",
+      "question": "Which segment had the lower CO2 per nautical mile in 2025: vehicle carriers or ro-ro ships?",
+      "type": "text",
+      "gold": "Vehicle carrier",
+      "answer": "Vehicle carrier",
+      "correct": true,
+      "text": "Vehicle carriers had the lower CO2 emissions per nautical mile in 2025 with an average of 287.07 kg/nm compared to 340.16 kg/nm for ro-ro ships.\n\nANSWER: Vehicle carrier",
+      "sql": [
+        "select sum(case when f.is_quality_ok then f.co2_t end) * 1000 / sum(case when f.is_quality_ok then f.distance_nm end) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Vehicle carrier' and f.reporting_year >= 2025 and f.reporting_year <= 2025",
+        "select sum(case when f.is_quality_ok then f.co2_t end) * 1000 / sum(case when f.is_quality_ok then f.distance_nm end) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Ro-ro ship' and f.reporting_year >= 2025 and f.reporting_year <= 2025"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "metric": "co2_per_nm_kg",
+            "year_from": 2025,
+            "filters": {
+              "segment": "Vehicle carrier"
+            },
+            "year_to": 2025
+          },
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "year_from": 2025,
+            "filters": {
+              "segment": "Ro-ro ship"
+            },
+            "year_to": 2025,
+            "metric": "co2_per_nm_kg"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 3,
+      "error": null,
+      "latency_s": 4.96,
+      "input_tokens": 5870,
+      "output_tokens": 166
+    },
+    {
+      "id": "T05",
+      "split": "test",
+      "question": "How many nautical miles did vehicle carriers sail in 2021?",
+      "type": "number",
+      "gold": 13263046.725312,
+      "answer": "13263046.7253118",
+      "correct": true,
+      "text": "Vehicle carriers sailed a total of 13,263,046.72 nautical miles in 2021.\nANSWER: 13263046.7253118",
+      "sql": [
+        "select sum(f.distance_nm) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Vehicle carrier' and f.reporting_year >= 2021 and f.reporting_year <= 2021"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "filters": {
+              "segment": "Vehicle carrier"
+            },
+            "year_to": 2021,
+            "year_from": 2021,
+            "metric": "distance_nm"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 3,
+      "error": null,
+      "latency_s": 4.25,
+      "input_tokens": 5727,
+      "output_tokens": 104
+    },
+    {
+      "id": "T06",
+      "split": "test",
+      "question": "How many vehicle carrier ship-years were rated E in 2024?",
+      "type": "number",
+      "gold": 49,
+      "answer": "49",
+      "correct": true,
+      "text": "In 2024, there were 49 vehicle carrier ship-years that received a CII rating of E.\n\nANSWER: 49",
+      "sql": [
+        "SELECT COUNT(*) FROM marts.fct_ship_year_emissions AS f JOIN marts.dim_ship AS d ON f.ship_version_key = d.ship_version_key WHERE f.reporting_year = 2024 AND f.segment_key = 'Vehicle carrier' AND f.cii_rating = 'E'"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT count(*) FROM marts.fct_ship_year_emissions f JOIN marts.dim_ship d ON f.ship_version_key = d.ship_version_key WHERE f.reporting_year = 2024 AND f.segment_key = 'Vehicle carrier' AND f.cii_rating = 'E'"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 3.9,
+      "input_tokens": 2905,
+      "output_tokens": 118
+    },
+    {
+      "id": "T07",
+      "split": "test",
+      "question": "Which vehicle carrier had the highest CO2 per nautical mile in 2025? Give its pseudonym.",
+      "type": "text",
+      "gold": "Carrier 266",
+      "answer": "Carrier 266",
+      "correct": true,
+      "text": "Carrier 266 had the highest CO2 emissions per nautical mile among vehicle carriers in 2025, with 565.98 kg per nautical mile.\nANSWER: Carrier 266",
+      "sql": [
+        "SELECT s.ship_pseudonym, f.co2_kg_per_nm FROM marts.fct_ship_year_emissions AS f JOIN marts.dim_ship AS s ON f.ship_version_key = s.ship_version_key WHERE f.reporting_year = 2025 AND f.segment_key = 'Vehicle carrier' AND f.is_quality_ok = TRUE ORDER BY f.co2_kg_per_nm DESC LIMIT 1"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT s.ship_pseudonym, f.co2_kg_per_nm FROM marts.fct_ship_year_emissions f JOIN marts.dim_ship s ON f.ship_version_key = s.ship_version_key WHERE f.reporting_year = 2025 AND f.segment_key = 'Vehicle carrier' AND f.is_quality_ok = true ORDER BY f.co2_kg_per_nm DESC LIMIT 1"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 1.74,
+      "input_tokens": 3000,
+      "output_tokens": 163
+    },
+    {
+      "id": "T08",
+      "split": "test",
+      "question": "What share of the fleet's MRV CO2 in 2025 fell under the EU ETS scope rules?",
+      "type": "number",
+      "gold": 0.690889,
+      "answer": "0.690888646776217",
+      "correct": true,
+      "text": "The share of the fleet's MRV CO2 emissions in 2025 that fell under the EU ETS scope rules was approximately 69.1%.\n\nANSWER: 0.690888646776217",
+      "sql": [
+        "select sum(f.co2_t) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.reporting_year >= 2025 and f.reporting_year <= 2025",
+        "select sum(f.co2_ets_scope_t) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.reporting_year >= 2025 and f.reporting_year <= 2025",
+        "SELECT SUM(co2_ets_scope_t) / SUM(co2_t) AS share FROM marts.fct_ship_year_emissions WHERE reporting_year = 2025"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "year_to": 2025,
+            "metric": "co2_t",
+            "year_from": 2025
+          },
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "year_from": 2025,
+            "metric": "co2_ets_scope_t",
+            "year_to": 2025
+          },
+          "ok": true
+        },
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT sum(co2_ets_scope_t) / sum(co2_t) as share FROM marts.fct_ship_year_emissions WHERE reporting_year = 2025"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 4,
+      "error": null,
+      "latency_s": 91.97,
+      "input_tokens": 8302,
+      "output_tokens": 202
+    },
+    {
+      "id": "T09",
+      "split": "test",
+      "question": "How many EU ETS allowances were due for ro-ro ships for 2025, in tonnes?",
+      "type": "number",
+      "gold": 2849997.812589,
+      "answer": "2849997.8125885",
+      "correct": true,
+      "text": "For 2025, a total of 2,849,997.8 EU ETS allowances were due for ro-ro ships.\n\nANSWER: 2849997.8125885",
+      "sql": [
+        "select sum(f.eua_due_t) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Ro-ro ship' and f.reporting_year >= 2025 and f.reporting_year <= 2025"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "year_from": 2025,
+            "filters": {
+              "segment": "Ro-ro ship"
+            },
+            "year_to": 2025,
+            "metric": "allowances_due_t"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 3,
+      "error": null,
+      "latency_s": 3.64,
+      "input_tokens": 5754,
+      "output_tokens": 112
+    },
+    {
+      "id": "T10",
+      "split": "test",
+      "question": "What share of port calls in Norway involved waiting at anchor before berthing?",
+      "type": "number",
+      "gold": 0.003003,
+      "answer": "0.00300300307571888",
+      "correct": true,
+      "text": "Approximately 0.3% of port calls in Norway involved waiting at anchor before berthing.\nANSWER: 0.00300300307571888",
+      "sql": [
+        "SELECT SUM(CAST(has_waiting AS INT)) / CAST(COUNT(*) AS REAL) AS waiting_share FROM marts.fct_port_call"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT sum(CAST(has_waiting AS INT)) / count(*)::float as waiting_share FROM marts.fct_port_call"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 11.32,
+      "input_tokens": 2833,
+      "output_tokens": 87
+    },
+    {
+      "id": "T11",
+      "split": "test",
+      "question": "How many different Norwegian ports received at least one port call from fleet ships?",
+      "type": "number",
+      "gold": 72,
+      "answer": "72",
+      "correct": true,
+      "text": "There are 72 different Norwegian ports that received at least one port call from fleet ships in the August to September 2026 data.\n\nANSWER: 72",
+      "sql": [
+        "SELECT COUNT(DISTINCT p.port_key) AS cnt FROM marts.fct_port_call AS c JOIN marts.dim_port AS p ON c.port_key = p.port_key"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT count(DISTINCT p.port_key) AS cnt FROM marts.fct_port_call AS c JOIN marts.dim_port AS p ON c.port_key = p.port_key"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 9.6,
+      "input_tokens": 2840,
+      "output_tokens": 95
+    },
+    {
+      "id": "T12",
+      "split": "test",
+      "question": "What was the median time at berth per call in Drammen, in hours?",
+      "type": "number",
+      "gold": 8.532778,
+      "answer": "8.53277777777778",
+      "correct": true,
+      "text": "The median time at berth per call in Drammen was approximately 8.53 hours.\n\nANSWER: 8.53277777777778",
+      "sql": [
+        "SELECT QUANTILE_CONT(berth_hours, 0.5 ORDER BY berth_hours) AS median_berth_hours FROM marts.fct_port_call AS c JOIN marts.dim_port AS p ON c.port_key = p.port_key WHERE p.port_name = 'Drammen' AND NOT c.berth_hours IS NULL"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY berth_hours) AS median_berth_hours\nFROM marts.fct_port_call c\nJOIN marts.dim_port p ON c.port_key = p.port_key\nWHERE p.port_name = 'Drammen' AND c.berth_hours IS NOT NULL"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 1.53,
+      "input_tokens": 2933,
+      "output_tokens": 133
+    },
+    {
+      "id": "T13",
+      "split": "test",
+      "question": "What was the average EU ETS allowance price in September 2026, in euros per tonne?",
+      "type": "number",
+      "gold": 85.717667,
+      "answer": "85.7176666666667",
+      "correct": true,
+      "text": "The average EU ETS allowance price in September 2026 was approximately 85.72 euros per tonne.\nANSWER: 85.7176666666667",
+      "sql": [
+        "SELECT AVG(eua_price_eur_per_t) AS avg_price FROM marts.fct_daily_carbon_price WHERE date_key BETWEEN '2026-09-01' AND '2026-09-30'"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT AVG(eua_price_eur_per_t) AS avg_price FROM marts.fct_daily_carbon_price WHERE date_key BETWEEN '2026-09-01' AND '2026-09-30'"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 3.62,
+      "input_tokens": 2898,
+      "output_tokens": 119
+    },
+    {
+      "id": "T14",
+      "split": "test",
+      "question": "What was the highest daily EU ETS allowance price in 2023, in euros per tonne?",
+      "type": "number",
+      "gold": 100.34,
+      "answer": "100.34",
+      "correct": true,
+      "text": "The highest daily EU ETS allowance price recorded in 2023 was 100.34 euros per tonne.\n\nANSWER: 100.34",
+      "sql": [
+        "SELECT MAX(eua_price_eur_per_t) FROM marts.fct_daily_carbon_price WHERE DATE_PART('year', date_key) = 2023"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT max(eua_price_eur_per_t) FROM marts.fct_daily_carbon_price WHERE date_part('year', date_key) = 2023"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 1.45,
+      "input_tokens": 2864,
+      "output_tokens": 93
+    },
+    {
+      "id": "T15",
+      "split": "test",
+      "question": "How many vehicle carriers in the size class 'Large (57,700 GT and above)' reported for 2025?",
+      "type": "number",
+      "gold": 147,
+      "answer": "147",
+      "correct": true,
+      "text": "There were 147 large vehicle carriers (57,700 GT and above) that reported under EU MRV for 2025.\nANSWER: 147",
+      "sql": [
+        "select count(distinct f.ship_key) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Vehicle carrier' and s.size_class = 'Large (57,700 GT and above)' and f.reporting_year >= 2025 and f.reporting_year <= 2025"
+      ],
+      "tool_calls": [
+        {
+          "name": "get_metric",
+          "args": {
+            "year_to": 2025,
+            "filters": {
+              "size_class": "Large (57,700 GT and above)",
+              "segment": "Vehicle carrier"
+            },
+            "metric": "active_ships",
+            "year_from": 2025
+          },
+          "ok": false
+        },
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "year_from": 2025,
+            "metric": "ships_reporting",
+            "year_to": 2025,
+            "filters": {
+              "segment": "Vehicle carrier",
+              "size_class": "Large (57,700 GT and above)"
+            }
+          },
+          "ok": true
+        }
+      ],
+      "steps": 4,
+      "error": null,
+      "latency_s": 14.78,
+      "input_tokens": 7425,
+      "output_tokens": 178
+    },
+    {
+      "id": "T16",
+      "split": "test",
+      "question": "What was the CO2 per nautical mile in 2025 of vehicle carriers of the EEDI generation (contracted 2013 or later), in kg?",
+      "type": "number",
+      "gold": 293.181338,
+      "answer": "293.181337604353",
+      "correct": true,
+      "text": "In 2025, vehicle carriers of the EEDI generation emitted an average of 293.18 kg of CO2 per nautical mile sailed.\nANSWER: 293.181337604353",
+      "sql": [
+        "SELECT SUM(e.co2_t) * 1000.0 / SUM(e.distance_nm) AS co2_per_nm_kg FROM marts.fct_ship_year_emissions AS e JOIN marts.dim_ship AS s ON e.ship_version_key = s.ship_version_key WHERE e.reporting_year = 2025 AND e.segment_key = 'Vehicle carrier' AND s.design_generation = 'EEDI generation (contracted 2013 or later)' AND e.is_quality_ok = TRUE"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT sum(e.co2_t) * 1000.0 / sum(e.distance_nm) AS co2_per_nm_kg\nFROM marts.fct_ship_year_emissions e\nJOIN marts.dim_ship s ON e.ship_version_key = s.ship_version_key\nWHERE e.reporting_year = 2025\n  AND e.segment_key = 'Vehicle carrier'\n  AND s.design_generation = 'EEDI generation (contracted 2013 or later)'\n  AND e.is_quality_ok = true;"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 3,
+      "error": null,
+      "latency_s": 3.34,
+      "input_tokens": 6033,
+      "output_tokens": 216
+    },
+    {
+      "id": "T17",
+      "split": "test",
+      "question": "What was the average ratio of attained to required CII for ro-ro ships in 2023?",
+      "type": "number",
+      "gold": 1.025537,
+      "answer": "1.02553683812189",
+      "correct": true,
+      "text": "The average ratio of attained to required CII for ro-ro ships in 2023 was 1.0255.\n\nANSWER: 1.02553683812189",
+      "sql": [
+        "select avg(f.cii_ratio) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Ro-ro ship' and f.reporting_year >= 2023 and f.reporting_year <= 2023"
+      ],
+      "tool_calls": [
+        {
+          "name": "get_metric",
+          "args": {
+            "filters": {
+              "segment": "Ro-ro ship"
+            },
+            "year_from": 2023,
+            "metric": "avg_cii_ratio",
+            "year_to": 2023
+          },
+          "ok": false
+        },
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "filters": {
+              "segment": "Ro-ro ship"
+            },
+            "year_from": 2023,
+            "year_to": 2023,
+            "metric": "average_cii_ratio"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 4,
+      "error": null,
+      "latency_s": 15.68,
+      "input_tokens": 7358,
+      "output_tokens": 156
+    },
+    {
+      "id": "T18",
+      "split": "test",
+      "question": "Which flag region had the most fleet ships reporting for 2025?",
+      "type": "text",
+      "gold": "EU/EEA",
+      "answer": "EU/EEA",
+      "correct": true,
+      "text": "The EU/EEA flag region had the highest number of fleet ships reporting for the 2025 reporting year, with a total of 280 ships.\nANSWER: EU/EEA",
+      "sql": [
+        "SELECT s.flag_region, COUNT(DISTINCT f.ship_key) AS ship_count FROM marts.fct_ship_year_emissions AS f JOIN marts.dim_ship AS s ON f.ship_version_key = s.ship_version_key WHERE f.reporting_year = 2025 GROUP BY s.flag_region ORDER BY ship_count DESC LIMIT 1"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT s.flag_region, COUNT(DISTINCT f.ship_key) AS ship_count\nFROM marts.fct_ship_year_emissions f\nJOIN marts.dim_ship s ON f.ship_version_key = s.ship_version_key\nWHERE f.reporting_year = 2025\nGROUP BY s.flag_region\nORDER BY ship_count DESC\nLIMIT 1"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 2.78,
+      "input_tokens": 2948,
+      "output_tokens": 148
+    },
+    {
+      "id": "T19",
+      "split": "test",
+      "question": "What was the combined EU ETS cost of vehicle carriers for 2024 and 2025 together, in euros?",
+      "type": "number",
+      "gold": 203248007.154065,
+      "answer": "203248007.154065",
+      "correct": true,
+      "text": "The combined EU ETS cost for vehicle carriers in 2024 and 2025 was 203,248,007.15 euros.\n\nANSWER: 203248007.154065",
+      "sql": [
+        "select sum(f.ets_cost_eur) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Vehicle carrier' and f.reporting_year >= 2024 and f.reporting_year <= 2025"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "metric": "ets_cost_eur",
+            "filters": {
+              "segment": "Vehicle carrier"
+            },
+            "year_from": 2024,
+            "year_to": 2025
+          },
+          "ok": true
+        }
+      ],
+      "steps": 3,
+      "error": null,
+      "latency_s": 3.69,
+      "input_tokens": 5765,
+      "output_tokens": 115
+    },
+    {
+      "id": "T20",
+      "split": "test",
+      "question": "How many voyage legs between Norwegian ports were recorded?",
+      "type": "number",
+      "gold": 605,
+      "answer": "605",
+      "correct": true,
+      "text": "There were 605 recorded voyage legs where both the origin and destination ports are located in Norway.\nANSWER: 605",
+      "sql": [
+        "SELECT COUNT(*) AS leg_count FROM marts.fct_voyage_leg AS l JOIN marts.dim_port AS o ON l.origin_port_key = o.port_key JOIN marts.dim_port AS d ON l.destination_port_key = d.port_key WHERE NOT o.county_name IS NULL AND NOT d.county_name IS NULL"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT count(*) AS leg_count\nFROM marts.fct_voyage_leg AS l\nJOIN marts.dim_port AS o ON l.origin_port_key = o.port_key\nJOIN marts.dim_port AS d ON l.destination_port_key = d.port_key\nWHERE o.county_name IS NOT NULL AND d.county_name IS NOT NULL"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 1.66,
+      "input_tokens": 2911,
+      "output_tokens": 128
+    },
+    {
+      "id": "T21",
+      "split": "test",
+      "question": "What was the average speed of ro-ro ships in 2018, in knots?",
+      "type": "number",
+      "gold": 14.641661,
+      "answer": "14.6416611311338",
+      "correct": true,
+      "text": "The average speed of ro-ro ships in 2018 was 14.64 knots.\n\nANSWER: 14.6416611311338",
+      "sql": [
+        "select sum(case when f.is_quality_ok then f.distance_nm end) / sum(case when f.is_quality_ok then f.hours_at_sea end) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Ro-ro ship' and f.reporting_year >= 2018 and f.reporting_year <= 2018"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "year_to": 2018,
+            "filters": {
+              "segment": "Ro-ro ship"
+            },
+            "metric": "avg_speed_kn",
+            "year_from": 2018
+          },
+          "ok": true
+        }
+      ],
+      "steps": 3,
+      "error": null,
+      "latency_s": 7.48,
+      "input_tokens": 5747,
+      "output_tokens": 102
+    },
+    {
+      "id": "T22",
+      "split": "test",
+      "question": "In which year between 2018 and 2025 was the fleet's CO2 per nautical mile lowest?",
+      "type": "text",
+      "gold": "2025",
+      "answer": "2025",
+      "correct": true,
+      "text": "The fleet's CO2 per nautical mile was lowest in the year 2025, with an average of 314.26 kg per nautical mile.\n\nANSWER: 2025",
+      "sql": [
+        "SELECT reporting_year, SUM(co2_t) * 1000.0 / SUM(distance_nm) AS co2_per_nm_kg FROM marts.fct_ship_year_emissions WHERE is_quality_ok GROUP BY reporting_year ORDER BY co2_per_nm_kg ASC"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT reporting_year, SUM(co2_t) * 1000.0 / SUM(distance_nm) AS co2_per_nm_kg FROM marts.fct_ship_year_emissions WHERE is_quality_ok GROUP BY reporting_year ORDER BY co2_per_nm_kg ASC"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 3,
+      "error": null,
+      "latency_s": 2.27,
+      "input_tokens": 6045,
+      "output_tokens": 139
+    },
+    {
+      "id": "T23",
+      "split": "test",
+      "question": "How many port calls did fleet ships make in Bergen?",
+      "type": "number",
+      "gold": 45,
+      "answer": "45",
+      "correct": true,
+      "text": "Fleet ships made 45 port calls in Bergen during the August to September 2026 period.\n\nANSWER: 45",
+      "sql": [
+        "SELECT p.port_name, p.port_key, COUNT(*) AS call_count FROM marts.fct_port_call AS c JOIN marts.dim_port AS p ON c.port_key = p.port_key WHERE p.port_name ILIKE '%Bergen%' OR p.port_key ILIKE '%BER%|' OR p.port_key ILIKE '%BER%' GROUP BY p.port_name, p.port_key"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT p.port_name, p.port_key, count(*) as call_count\nFROM marts.fct_port_call c\nJOIN marts.dim_port p ON c.port_key = p.port_key\nWHERE p.port_name ILIKE '%Bergen%' OR p.port_key ILIKE '%BER%|' OR p.port_key ILIKE '%BER%'\nGROUP BY p.port_name, p.port_key"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 9.72,
+      "input_tokens": 2975,
+      "output_tokens": 147
+    },
+    {
+      "id": "T24",
+      "split": "test",
+      "question": "How much CO2 did vehicle carriers emit at berth in EEA ports in 2025, in tonnes?",
+      "type": "number",
+      "gold": 161592.15101,
+      "answer": "161592.15101",
+      "correct": true,
+      "text": "Vehicle carriers emitted 161592.15101 tonnes of CO2 at berth in EEA ports in 2025.\n\nANSWER: 161592.15101",
+      "sql": [
+        "SELECT SUM(co2_at_berth_eea_t) AS co2_berth FROM marts.fct_ship_year_emissions WHERE reporting_year = 2025 AND segment_key = 'Vehicle carrier'"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT sum(co2_at_berth_eea_t) as co2_berth FROM marts.fct_ship_year_emissions WHERE reporting_year = 2025 AND segment_key = 'Vehicle carrier'"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 3,
+      "error": null,
+      "latency_s": 21.95,
+      "input_tokens": 5825,
+      "output_tokens": 125
+    },
+    {
+      "id": "T25",
+      "split": "test",
+      "question": "How many ro-ro ship-years were rated A in 2025?",
+      "type": "number",
+      "gold": 26,
+      "answer": "26",
+      "correct": true,
+      "text": "There were 26 ro-ro ship-years rated A in 2025.\nANSWER: 26",
+      "sql": [
+        "SELECT COUNT(*) AS cnt FROM marts.fct_ship_year_emissions AS f JOIN marts.dim_ship AS d ON f.ship_version_key = d.ship_version_key WHERE f.reporting_year = 2025 AND f.segment_key = 'Ro-ro ship' AND f.cii_rating = 'A'"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT count(*) AS cnt FROM marts.fct_ship_year_emissions f JOIN marts.dim_ship d ON f.ship_version_key = d.ship_version_key WHERE f.reporting_year = 2025 AND f.segment_key = 'Ro-ro ship' AND f.cii_rating = 'A'"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 1.84,
+      "input_tokens": 2912,
+      "output_tokens": 117
+    },
+    {
+      "id": "T26",
+      "split": "test",
+      "question": "By what percentage did the EU ETS cost of vehicle carriers grow from 2024 to 2025?",
+      "type": "number",
+      "gold": 1.029825,
+      "answer": "102.982516946488",
+      "correct": true,
+      "text": "The EU ETS cost for vehicle carriers grew by 102.98% from 2024 to 2025, increasing from approximately 67.08 million EUR to 136.17 million EUR.\nANSWER: 102.982516946488",
+      "sql": [
+        "select sum(f.ets_cost_eur) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Vehicle carrier' and f.reporting_year >= 2024 and f.reporting_year <= 2024",
+        "select sum(f.ets_cost_eur) as value from marts.fct_ship_year_emissions f join marts.dim_ship s on s.ship_version_key = f.ship_version_key where f.segment_key = 'Vehicle carrier' and f.reporting_year >= 2025 and f.reporting_year <= 2025",
+        "SELECT (136165586.29281 - 67082420.8612543) / 67082420.8612543 * 100 AS pct_growth"
+      ],
+      "tool_calls": [
+        {
+          "name": "list_metrics",
+          "args": {},
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "year_from": 2024,
+            "metric": "ets_cost_eur",
+            "year_to": 2024,
+            "filters": {
+              "segment": "Vehicle carrier"
+            }
+          },
+          "ok": true
+        },
+        {
+          "name": "get_metric",
+          "args": {
+            "year_to": 2025,
+            "metric": "ets_cost_eur",
+            "year_from": 2025,
+            "filters": {
+              "segment": "Vehicle carrier"
+            }
+          },
+          "ok": true
+        },
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT (136165586.29281 - 67082420.8612543) / 67082420.8612543 * 100 AS pct_growth"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 5,
+      "error": null,
+      "latency_s": 14.45,
+      "input_tokens": 10617,
+      "output_tokens": 254
+    },
+    {
+      "id": "T27",
+      "split": "test",
+      "question": "How many fleet ships have a gross tonnage that is estimated rather than reported? Count each ship once using its current version.",
+      "type": "number",
+      "gold": 893,
+      "answer": "893",
+      "correct": true,
+      "text": "There are 893 fleet ships whose gross tonnage is estimated rather than reported based on their current version.\nANSWER: 893",
+      "sql": [
+        "SELECT COUNT(DISTINCT ship_key) FROM marts.dim_ship WHERE is_current = TRUE AND tonnage_method = 'estimated'",
+        "SELECT DISTINCT tonnage_method FROM marts.dim_ship",
+        "SELECT COUNT(DISTINCT ship_key) FROM marts.dim_ship WHERE is_current = TRUE AND tonnage_method = 'Estimated from AIS length and beam'"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT count(DISTINCT ship_key) FROM marts.dim_ship WHERE is_current = TRUE AND tonnage_method = 'estimated'"
+          },
+          "ok": true
+        },
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT DISTINCT tonnage_method FROM marts.dim_ship"
+          },
+          "ok": true
+        },
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT count(DISTINCT ship_key) FROM marts.dim_ship WHERE is_current = TRUE AND tonnage_method = 'Estimated from AIS length and beam'"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 4,
+      "error": null,
+      "latency_s": 6.11,
+      "input_tokens": 6088,
+      "output_tokens": 148
+    },
+    {
+      "id": "T28",
+      "split": "test",
+      "question": "What is the average gross tonnage of vehicle carriers, using each ship's current version and only ships with a known tonnage?",
+      "type": "number",
+      "gold": 55720.665696,
+      "answer": "55720.6656958047",
+      "correct": true,
+      "text": "The average gross tonnage of vehicle carriers, considering each ship's current version and only those with a known tonnage, is approximately 55720.67 tonnes.\n\nANSWER: 55720.6656958047",
+      "sql": [
+        "SELECT AVG(gross_tonnage) FROM marts.dim_ship WHERE segment = 'Vehicle carrier' AND is_current = TRUE AND NOT gross_tonnage IS NULL"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT avg(gross_tonnage) FROM marts.dim_ship WHERE segment = 'Vehicle carrier' AND is_current = true AND gross_tonnage IS NOT NULL"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 7.15,
+      "input_tokens": 2862,
+      "output_tokens": 106
+    },
+    {
+      "id": "T29",
+      "split": "test",
+      "question": "What was the fuel consumption per nautical mile of ro-ro ships in 2025, in kg?",
+      "type": "number",
+      "gold": 108.986194,
+      "answer": "108.986269603729",
+      "correct": true,
+      "text": "In 2025, ro-ro ships consumed an average of 108.99 kilograms of fuel per nautical mile.\nANSWER: 108.986269603729",
+      "sql": [
+        "SELECT SUM(fuel_t) * 1000.0 / SUM(distance_nm) AS fuel_kg_per_nm FROM marts.fct_ship_year_emissions WHERE segment_key = 'Ro-ro ship' AND reporting_year = 2025"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT sum(fuel_t) * 1000.0 / sum(distance_nm) AS fuel_kg_per_nm FROM marts.fct_ship_year_emissions WHERE segment_key = 'Ro-ro ship' AND reporting_year = 2025"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 13.52,
+      "input_tokens": 2914,
+      "output_tokens": 127
+    },
+    {
+      "id": "T30",
+      "split": "test",
+      "question": "In which month of 2025 was the average EU ETS allowance price highest? Give the month name.",
+      "type": "text",
+      "gold": "December",
+      "answer": "Dec",
+      "correct": false,
+      "text": "In 2025, the average EU ETS allowance price was highest in December.\nANSWER: Dec",
+      "sql": [
+        "SELECT d.month_short FROM marts.fct_daily_carbon_price AS f JOIN marts.dim_date AS d ON f.date_key = d.date_key WHERE d.year = 2025 GROUP BY d.month, d.month_short ORDER BY AVG(f.eua_price_eur_per_t) DESC LIMIT 1"
+      ],
+      "tool_calls": [
+        {
+          "name": "query_sql",
+          "args": {
+            "sql": "SELECT d.month_short FROM marts.fct_daily_carbon_price f JOIN marts.dim_date d ON f.date_key = d.date_key WHERE d.year = 2025 GROUP BY d.month, d.month_short ORDER BY AVG(f.eua_price_eur_per_t) DESC LIMIT 1"
+          },
+          "ok": true
+        }
+      ],
+      "steps": 2,
+      "error": null,
+      "latency_s": 4.42,
+      "input_tokens": 2931,
+      "output_tokens": 116
+    }
+  ],
+  "stopped": null,
+  "coverage": "40 of 40 questions"
+}

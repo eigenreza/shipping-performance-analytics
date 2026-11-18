@@ -1,0 +1,364 @@
+/// Home table for the report's measures, grouped in display folders.
+table Metrics
+	lineageTag: 1d272f8c-de89-5516-910b-af1d2dd8c46c
+
+	/// Total CO2 emitted in the EU MRV scope, in tonnes.
+	measure 'CO2 (t)' = SUM('Ship Year Emissions'[co2_t])
+		formatString: #,0
+		displayFolder: Emissions
+		lineageTag: 09c5c67c-8dcd-5c14-9cd7-6dcb18519cac
+
+	/// Total fuel burned in the EU MRV scope, in tonnes.
+	measure 'Fuel (t)' = SUM('Ship Year Emissions'[fuel_t])
+		formatString: #,0
+		displayFolder: Emissions
+		lineageTag: c4bc9173-8aa5-51e4-993b-7ffebe242b8d
+
+	/// Distance sailed in the MRV scope, in nautical miles (total fuel divided by fuel per nautical mile).
+	measure 'Distance (nm)' = SUM('Ship Year Emissions'[distance_nm])
+		formatString: #,0
+		displayFolder: Emissions
+		lineageTag: a9ecc0d5-0ed1-548a-8c2a-afbc93907c9f
+
+	/// Time at sea in the MRV scope, in hours.
+	measure 'Hours at Sea' = SUM('Ship Year Emissions'[hours_at_sea])
+		formatString: #,0
+		displayFolder: Emissions
+		lineageTag: cfdfd8c4-a95c-5f64-a563-3893e447008a
+
+	/// Number of distinct ships with an MRV report in the current filter.
+	measure 'Ships Reporting' = COUNTROWS(SUMMARIZE('Ship Year Emissions', Ship[ship_key]))
+		formatString: #,0
+		displayFolder: Emissions
+		lineageTag: 26b3e280-c656-5418-acfc-9129f186cc73
+
+	/// Number of ship-year reports.
+	measure Ship-Years = COUNTROWS('Ship Year Emissions')
+		formatString: #,0
+		displayFolder: Emissions
+		lineageTag: 35fd52cf-527b-5364-93b4-237f8f52ff80
+
+	/// Share of ship-years whose distance, speed and carbon factor are physically plausible. Efficiency measures use only these.
+	measure 'Quality-Checked Share' = DIVIDE(CALCULATE(COUNTROWS('Ship Year Emissions'), 'Ship Year Emissions'[Passes Quality Checks] = TRUE()), COUNTROWS('Ship Year Emissions'))
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Data Quality
+		lineageTag: 05806081-7e26-5bb9-b4a7-2ab6ea81ec45
+
+	/// Kilograms of CO2 per nautical mile: total CO2 divided by total distance, over quality-checked ship-years. Lower is better.
+	measure 'CO2 per nm (kg)' = CALCULATE(DIVIDE(SUM('Ship Year Emissions'[co2_t]) * 1000, SUM('Ship Year Emissions'[distance_nm])), KEEPFILTERS('Ship Year Emissions'[Passes Quality Checks] = TRUE()))
+		formatString: #,0.0
+		displayFolder: Efficiency
+		lineageTag: 511e6c85-64fc-50b1-b4f1-d974f8317a23
+
+	/// Kilograms of fuel per nautical mile over quality-checked ship-years.
+	measure 'Fuel per nm (kg)' = CALCULATE(DIVIDE(SUM('Ship Year Emissions'[fuel_t]) * 1000, SUM('Ship Year Emissions'[distance_nm])), KEEPFILTERS('Ship Year Emissions'[Passes Quality Checks] = TRUE()))
+		formatString: #,0.0
+		displayFolder: Efficiency
+		lineageTag: f145ada0-9bb7-5462-b1f8-e13ac4d02ffe
+
+	/// Average speed in knots: distance divided by hours at sea, over quality-checked ship-years.
+	measure 'Average Speed (kn)' = CALCULATE(DIVIDE(SUM('Ship Year Emissions'[distance_nm]), SUM('Ship Year Emissions'[hours_at_sea])), KEEPFILTERS('Ship Year Emissions'[Passes Quality Checks] = TRUE()))
+		formatString: #,0.0
+		displayFolder: Efficiency
+		lineageTag: 3aa6a027-0982-55be-bd33-183e732f38db
+
+	/// Grams of CO2 per tonne of cargo carried one nautical mile, for ship-years that report transport work by cargo mass.
+	measure 'CO2 per Tonne-Mile (g)' = CALCULATE(DIVIDE(SUM('Ship Year Emissions'[co2_t]) * 1000000, SUM('Ship Year Emissions'[transport_work_tonne_nm])), KEEPFILTERS('Ship Year Emissions'[Passes Quality Checks] = TRUE()), KEEPFILTERS(NOT ISBLANK('Ship Year Emissions'[transport_work_tonne_nm])))
+		formatString: #,0.0
+		displayFolder: Efficiency
+		lineageTag: 1b1c0454-b8af-568f-8e60-246386fda1fd
+
+	/// Tonnes of CO2 per tonne of fuel. About 3.11 for heavy fuel oil and lower for LNG.
+	measure 'Carbon Factor (t CO2 per t fuel)' = DIVIDE([CO2 (t)], [Fuel (t)])
+		formatString: 0.000
+		displayFolder: Efficiency
+		lineageTag: 0850f15b-9071-515b-98fa-4f697e31d3a2
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["INTEGER_FORMATTING", "PROVIDE_FORMAT_STRING_FOR_MEASURES"]}
+
+	/// CO2 counted under the EU ETS rules: 100% of voyages between EEA ports and at berth, 50% of voyages into or out of the EEA.
+	measure 'CO2 in EU ETS Scope (t)' = SUM('Ship Year Emissions'[co2_ets_scope_t])
+		formatString: #,0
+		displayFolder: EU ETS
+		lineageTag: 3e5439cd-bc5d-577d-9715-8d4100800d84
+
+	/// Share of MRV CO2 that falls under the EU ETS scope rules.
+	measure 'EU ETS Scope Share' = DIVIDE([CO2 in EU ETS Scope (t)], [CO2 (t)])
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: EU ETS
+		lineageTag: d878ae2e-6d46-5b4f-86d0-afeedf095a85
+
+	/// Allowances to surrender: CO2 in scope times the phase-in share (40% for 2024, 70% for 2025, 100% from 2026). Zero before 2024.
+	measure 'Allowances Due (t)' = SUM('Ship Year Emissions'[eua_due_t])
+		formatString: #,0
+		displayFolder: EU ETS
+		lineageTag: a2bf1b82-d490-56ea-b520-5c15dbdf6c6e
+
+	/// Allowances due times the average EU ETS price of the same year, in euros.
+	measure 'EU ETS Cost (EUR)' = SUM('Ship Year Emissions'[ets_cost_eur])
+		formatString: #,0
+		displayFolder: EU ETS
+		lineageTag: cd03bbd3-3901-5da8-93ee-57816f81820c
+
+	/// EU ETS cost divided by the number of ships reporting.
+	measure 'EU ETS Cost per Ship (EUR)' = DIVIDE([EU ETS Cost (EUR)], [Ships Reporting])
+		formatString: #,0
+		displayFolder: EU ETS
+		lineageTag: 985caa27-aacc-5d3c-95ec-cfe78a998e56
+
+	/// Full-scope EU ETS cost (100% surrender, the rule from 2026) at the carbon price chosen with the Carbon Price Scenario parameter.
+	measure 'EU ETS Cost at Scenario Price (EUR)' = [CO2 in EU ETS Scope (t)] * [Carbon Price Scenario Value]
+		formatString: #,0
+		displayFolder: Scenarios
+		lineageTag: d898a880-117b-5656-b825-940a12c6162d
+
+	/// Average daily EU ETS allowance price in the selected period, EUR per tonne of CO2.
+	measure 'Average EUA Price (EUR/t)' = AVERAGE('Carbon Price'[eua_price_eur_per_t])
+		formatString: #,0.00
+		displayFolder: Carbon Price
+		lineageTag: 13e0bf60-b330-57c3-b399-aa5fc6ebee77
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["INTEGER_FORMATTING", "PROVIDE_FORMAT_STRING_FOR_MEASURES"]}
+
+	/// EU ETS allowance price on the last day in the selected period.
+	measure 'Latest EUA Price (EUR/t)' = VAR d = CALCULATE(MAX('Carbon Price'[date_key]), 'Carbon Price') RETURN CALCULATE(AVERAGE('Carbon Price'[eua_price_eur_per_t]), 'Carbon Price'[date_key] = d)
+		formatString: #,0.00
+		displayFolder: Carbon Price
+		lineageTag: 3dd12acd-0a6b-54e7-b6fe-731a7876ee04
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["INTEGER_FORMATTING", "PROVIDE_FORMAT_STRING_FOR_MEASURES"]}
+
+	/// Highest minus lowest daily price in the selected period.
+	measure 'EUA Price Range (EUR/t)' = MAX('Carbon Price'[eua_price_eur_per_t]) - MIN('Carbon Price'[eua_price_eur_per_t])
+		formatString: #,0.00
+		displayFolder: Carbon Price
+		lineageTag: 37cf5687-9f8d-5009-9936-edac8cb0b804
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["INTEGER_FORMATTING", "PROVIDE_FORMAT_STRING_FOR_MEASURES"]}
+
+	/// Ship-years with a CII rating (needs gross tonnage and a reduction factor for the year).
+	measure 'Rated Ship-Years' = CALCULATE(COUNTROWS('Ship Year Emissions'), KEEPFILTERS(NOT ISBLANK('Ship Year Emissions'[CII Rating])))
+		formatString: #,0
+		displayFolder: Carbon Rating
+		lineageTag: 2158456f-df67-525b-9670-c7ce86c7e5e2
+
+	/// Share of rated ship-years with a D or E rating. Under IMO rules, a D for three years in a row or one E requires a corrective plan.
+	measure 'Share Rated D or E' = DIVIDE(CALCULATE(COUNTROWS('Ship Year Emissions'), KEEPFILTERS('Ship Year Emissions'[CII Rating] IN {"D", "E"})), [Rated Ship-Years])
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Carbon Rating
+		lineageTag: a3252ec4-5b9e-52e7-ace2-31cab09f97a8
+
+	/// Share of rated ship-years with an A or B rating.
+	measure 'Share Rated A or B' = DIVIDE(CALCULATE(COUNTROWS('Ship Year Emissions'), KEEPFILTERS('Ship Year Emissions'[CII Rating] IN {"A", "B"})), [Rated Ship-Years])
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Carbon Rating
+		lineageTag: f647ebc0-7659-5609-851b-2449baad6ad5
+
+	/// Average of attained CII divided by required CII. Below 1 is better than required.
+	measure 'Average CII Ratio' = AVERAGE('Ship Year Emissions'[cii_ratio])
+		formatString: 0.000
+		displayFolder: Carbon Rating
+		lineageTag: 9c193f11-0577-5b9c-bda2-37055770eeef
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["INTEGER_FORMATTING", "PROVIDE_FORMAT_STRING_FOR_MEASURES"]}
+
+	/// Ships whose rating letter is worse than in the previous year.
+	measure 'Ships with Worsening Rating' = CALCULATE(COUNTROWS(SUMMARIZE('Ship Year Emissions', Ship[ship_key])), KEEPFILTERS('Ship Year Emissions'[Rating Worsened] = TRUE()))
+		formatString: #,0
+		displayFolder: Carbon Rating
+		lineageTag: f3783946-2daa-58aa-b7e3-5147de5e6690
+
+	/// Number of AIS-derived port calls.
+	measure 'Port Calls' = COUNTROWS('Port Calls')
+		formatString: #,0
+		displayFolder: Ports
+		lineageTag: 9a19a6d7-176e-50a2-b441-6898772a733f
+
+	/// Median hours at anchor before berthing, over all calls (calls without waiting count as zero).
+	measure 'Median Waiting Time (h)' = MEDIAN('Port Calls'[waiting_hours])
+		formatString: #,0.0
+		displayFolder: Ports
+		lineageTag: 20e2a692-c755-5198-8ebe-3660e0b5f67b
+
+	/// Average hours at anchor for the calls that did wait.
+	measure 'Average Waiting Time when Waiting (h)' = CALCULATE(AVERAGE('Port Calls'[waiting_hours]), KEEPFILTERS('Port Calls'[Had Waiting] = TRUE()))
+		formatString: #,0.0
+		displayFolder: Ports
+		lineageTag: 8cb70f2d-5d5d-5405-88a2-fba569bd0319
+
+	/// Share of port calls with anchorage waiting before berthing.
+	measure 'Share of Calls with Waiting' = DIVIDE(CALCULATE(COUNTROWS('Port Calls'), KEEPFILTERS('Port Calls'[Had Waiting] = TRUE())), [Port Calls])
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Ports
+		lineageTag: 235c40b3-2168-5aad-b530-e03ae69be438
+
+	/// Total hours at anchor before berthing.
+	measure 'Total Waiting Time (h)' = SUM('Port Calls'[waiting_hours])
+		formatString: #,0
+		displayFolder: Ports
+		lineageTag: 38cc71e9-b218-51c8-9629-000f57c94b32
+
+	/// Median hours alongside the quay per call.
+	measure 'Median Berth Time (h)' = MEDIAN('Port Calls'[berth_hours])
+		formatString: #,0.0
+		displayFolder: Ports
+		lineageTag: 4886b635-9d8d-52af-bea1-c5d5b59fbd92
+
+	/// Share of AIS-derived calls that Kystverket's own port call records confirm within 12 hours.
+	measure 'Calls Confirmed by Kystverket' = DIVIDE(CALCULATE(COUNTROWS('Port Calls'), 'Port Calls'[Confirmed by Kystverket] = TRUE(), 'Port Calls'[Cut by Data Window] = FALSE()), CALCULATE(COUNTROWS('Port Calls'), 'Port Calls'[Cut by Data Window] = FALSE()))
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Data Quality
+		lineageTag: 95bd68ec-8bfb-52a0-afd6-0818366faf37
+
+	/// Number of voyage legs between port calls.
+	measure 'Voyage Legs' = COUNTROWS('Voyage Legs')
+		formatString: #,0
+		displayFolder: Voyages and Weather
+		lineageTag: 92a6f1f1-db1d-530b-8e30-30aa95182a88
+
+	/// Voyage legs that end in the port in view (uses the inactive destination relationship; Voyage Legs counts legs that start there).
+	measure 'Legs Arriving' = CALCULATE([Voyage Legs], USERELATIONSHIP('Voyage Legs'[destination_port_id], Port[Port Key]))
+		formatString: #,0
+		displayFolder: Voyages and Weather
+		lineageTag: bb01fbdc-0e0e-59b5-ac0e-3a167ab8443b
+
+	/// Distance sailed along the AIS track.
+	measure 'Leg Distance (nm)' = SUM('Voyage Legs'[sailed_nm])
+		formatString: #,0
+		displayFolder: Voyages and Weather
+		lineageTag: f2d8f528-54e5-5306-b043-5d6c17698e4b
+
+	/// Average speed while under way (3 knots or more).
+	measure 'Leg Speed (kn)' = DIVIDE(SUM('Voyage Legs'[sailed_nm]), SUM('Voyage Legs'[steaming_hours]))
+		formatString: #,0.0
+		displayFolder: Voyages and Weather
+		lineageTag: bb3bbd8d-6aa4-5d0f-990a-07f5ed27c86f
+
+	/// Average 10 m wind speed along the legs, weighted by steaming hours.
+	measure 'Average Wind (m/s)' = DIVIDE(SUMX('Voyage Legs', 'Voyage Legs'[avg_wind_ms] * 'Voyage Legs'[steaming_hours]), CALCULATE(SUM('Voyage Legs'[steaming_hours]), NOT ISBLANK('Voyage Legs'[avg_wind_ms])))
+		formatString: #,0.0
+		displayFolder: Voyages and Weather
+		lineageTag: 12f766c1-340f-5854-bb72-87264214db3a
+
+	/// Average significant wave height along the legs, weighted by steaming hours.
+	measure 'Average Wave Height (m)' = DIVIDE(SUMX('Voyage Legs', 'Voyage Legs'[avg_wave_m] * 'Voyage Legs'[steaming_hours]), CALCULATE(SUM('Voyage Legs'[steaming_hours]), NOT ISBLANK('Voyage Legs'[avg_wave_m])))
+		formatString: 0.00
+		displayFolder: Voyages and Weather
+		lineageTag: 0f3bd55f-c8f0-5802-8206-ed8cf62c83b5
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["INTEGER_FORMATTING", "PROVIDE_FORMAT_STRING_FOR_MEASURES"]}
+
+	/// Share of steaming time in wind of 10.8 m/s or more (Beaufort 6) or waves of 2.5 m or more.
+	measure 'Rough Weather Share' = DIVIDE(SUMX('Voyage Legs', 'Voyage Legs'[rough_share] * 'Voyage Legs'[steaming_hours]), CALCULATE(SUM('Voyage Legs'[steaming_hours]), NOT ISBLANK('Voyage Legs'[rough_share])))
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Voyages and Weather
+		lineageTag: 83eea0fe-2c3d-5efe-8f75-4aba367e9c48
+
+	/// Exponent b in CO2 per nautical mile ~ speed^b, from the Speed Relation choice: estimated from MRV data across ships (default, conservative) or the engineering rule b = 2.
+	measure 'Speed Elasticity' = VAR p = SELECTEDVALUE('Speed Relation'[Parameter Key], "speed_elasticity_mrv") RETURN CALCULATE(MAX('Model Parameters'[Value]), 'Model Parameters'[Parameter] = p, 'Model Parameters'[Parameter Segment] = "All")
+		formatString: 0.00
+		displayFolder: Scenarios
+		lineageTag: d450b5cf-4112-5cbf-9e74-dd39fa16796c
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["INTEGER_FORMATTING", "PROVIDE_FORMAT_STRING_FOR_MEASURES"]}
+
+	/// CO2 if every ship sailed the same distance at the changed speed: CO2 times (1 + speed change) to the power of the elasticity.
+	measure 'Scenario CO2 (t)' = [CO2 (t)] * POWER(1 + [Speed Change Value], [Speed Elasticity])
+		formatString: #,0
+		displayFolder: Scenarios
+		lineageTag: 92192195-b0aa-5a9a-8fd6-41883a1fe9c1
+
+	/// CO2 avoided in the speed scenario.
+	measure 'CO2 Saved (t)' = [CO2 (t)] - [Scenario CO2 (t)]
+		formatString: #,0
+		displayFolder: Scenarios
+		lineageTag: b62b42e9-08a9-59ed-89e6-1ea165e6124d
+
+	/// Fuel saved in the speed scenario times the fuel price chosen with the Fuel Price parameter.
+	measure 'Fuel Cost Saved (EUR)' = ([Fuel (t)] - [Fuel (t)] * POWER(1 + [Speed Change Value], [Speed Elasticity])) * [Fuel Price Value]
+		formatString: #,0
+		displayFolder: Scenarios
+		lineageTag: 59023cee-11ab-5772-b0a4-4c2c3b4bc67f
+
+	/// CO2 saved that falls under the EU ETS scope, at the scenario carbon price and full (2026) surrender.
+	measure 'EU ETS Cost Saved (EUR)' = [CO2 Saved (t)] * [EU ETS Scope Share] * [Carbon Price Scenario Value]
+		formatString: #,0
+		displayFolder: Scenarios
+		lineageTag: c24ebe75-7ae8-506b-9ca7-4c4cefc3eae7
+
+	/// Added days at sea to cover the same distance at the changed speed, summed over ships. The trade-off for the savings.
+	measure 'Extra Sailing Days' = DIVIDE([Hours at Sea] * (DIVIDE(1, 1 + [Speed Change Value]) - 1), 24)
+		formatString: #,0
+		displayFolder: Scenarios
+		lineageTag: 5e8ef2a9-8e61-50bf-9e44-1695f58eaa24
+
+	/// Added days at sea per ship and year in the speed scenario.
+	measure 'Extra Days per Ship' = DIVIDE([Extra Sailing Days], [Ships Reporting])
+		formatString: #,0.0
+		displayFolder: Scenarios
+		lineageTag: 88252c9c-a68c-565b-8b10-106b61fe0ddb
+
+	/// Rank of the ship by CO2 per nautical mile among the ships in view, 1 = lowest CO2 per mile.
+	measure 'Efficiency Rank' = IF(HASONEVALUE(Ship[Ship]) && NOT ISBLANK([CO2 per nm (kg)]), RANKX(FILTER(ALLSELECTED(Ship[Ship]), NOT ISBLANK([CO2 per nm (kg)])), [CO2 per nm (kg)], , ASC, DENSE))
+		formatString: #,0
+		displayFolder: Peers and Ranking
+		lineageTag: d5c0c5bf-1c3b-57af-902b-ceb1fbaa456f
+
+	/// CO2 per nautical mile of all ships in the same segment, for comparison with one ship.
+	measure 'Segment Peer CO2 per nm (kg)' = VAR seg = SELECTEDVALUE(Ship[Ship Segment]) RETURN CALCULATE([CO2 per nm (kg)], REMOVEFILTERS(Ship), Ship[Ship Segment] = seg)
+		formatString: #,0.0
+		displayFolder: Peers and Ranking
+		lineageTag: 1c097c2e-9693-5940-93af-aeacc1bfdd22
+
+	/// How much more (positive) or less (negative) CO2 per mile the ship emits than its segment.
+	measure 'Variance vs Segment Peers' = IF(NOT ISBLANK([CO2 per nm (kg)]), DIVIDE([CO2 per nm (kg)] - [Segment Peer CO2 per nm (kg)], [Segment Peer CO2 per nm (kg)]))
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Peers and Ranking
+		lineageTag: 66da9fb5-d94f-5730-b6e7-d3d4ba8fc3f8
+
+	/// CO2 per nautical mile of ships in the same segment and size class.
+	measure 'Size-Class Peer CO2 per nm (kg)' = VAR seg = SELECTEDVALUE(Ship[Ship Segment]) VAR sz = SELECTEDVALUE(Ship[Size Class]) RETURN CALCULATE([CO2 per nm (kg)], REMOVEFILTERS(Ship), Ship[Ship Segment] = seg, Ship[Size Class] = sz)
+		formatString: #,0.0
+		displayFolder: Peers and Ranking
+		lineageTag: f0468b23-7c32-5742-9e4b-3df61dc60ef1
+
+	/// How much more or less CO2 per mile the ship emits than ships of its segment and size class.
+	measure 'Variance vs Size-Class Peers' = IF(NOT ISBLANK([CO2 per nm (kg)]), DIVIDE([CO2 per nm (kg)] - [Size-Class Peer CO2 per nm (kg)], [Size-Class Peer CO2 per nm (kg)]))
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Peers and Ranking
+		lineageTag: ee384d4e-6530-50b3-ae63-d7fb44c58f56
+
+	/// Name of the ship in view (its pseudonym), for tooltips and page headers.
+	measure 'Ship Label' = SELECTEDVALUE(Ship[Ship], "Several ships")
+		displayFolder: Labels
+		lineageTag: a5b0b9fd-cbd2-5a5f-811d-20c6539f74ae
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["INTEGER_FORMATTING", "PROVIDE_FORMAT_STRING_FOR_MEASURES"]}
+
+	/// Text label summarising the current selection, for page headers.
+	measure 'Selected Scope Label' = "Ships: " & FORMAT([Ships Reporting], "#,0") & "  |  Ship-years: " & FORMAT([Ship-Years], "#,0")
+		displayFolder: Labels
+		lineageTag: 4a1a4507-7f56-55dd-bb7a-e274bddc3b37
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["INTEGER_FORMATTING", "PROVIDE_FORMAT_STRING_FOR_MEASURES"]}
+
+	column Placeholder
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 512f6777-0cb8-575e-8520-0ea950e2b748
+		summarizeBy: none
+		sourceColumn: Placeholder
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["UNNECESSARY_COLUMNS"]}
+
+	partition Metrics = m
+		mode: import
+		source = #table(type table [Placeholder = text], {})
+
+	annotation PBI_ResultType = Table
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["ENSURE_TABLES_HAVE_RELATIONSHIPS"]}
+

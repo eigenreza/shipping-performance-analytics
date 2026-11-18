@@ -1,0 +1,33 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DataFolder", "GoldFile", "Date", "Segment", "Ship", "Port", "Ship Year Emissions", "Port Calls", "Voyage Legs", "Carbon Price", "Model Parameters"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+ref table Date
+ref table Segment
+ref table Ship
+ref table Port
+ref table 'Ship Year Emissions'
+ref table 'Port Calls'
+ref table 'Voyage Legs'
+ref table 'Carbon Price'
+ref table 'Model Parameters'
+ref table Metrics
+ref table 'Speed Change'
+ref table 'Carbon Price Scenario'
+ref table 'Fuel Price'
+ref table 'Speed Relation'
+ref table 'Metric Selector'
+ref table 'Time Intelligence'
+
+ref role 'Vehicle Carriers Only'
+ref role 'Ro-ro Ships Only'
+

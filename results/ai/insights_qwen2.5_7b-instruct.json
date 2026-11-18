@@ -1,0 +1,313 @@
+{
+  "model": "qwen2.5:7b-instruct",
+  "label": "Qwen 2.5 7B (local, Ollama)",
+  "pages": [
+    {
+      "page": "overview",
+      "model": "qwen2.5:7b-instruct",
+      "latency_s": 38.003,
+      "input_tokens": 397,
+      "output_tokens": 133,
+      "findings": [
+        {
+          "text": "The number of Ro-ro ships increased by 3% from 2023 to 2025, while CO2 emissions decreased by 2.3% over the same period.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "3%",
+              "supported": true,
+              "matched": 3.0
+            },
+            {
+              "text": "2.3%",
+              "supported": true,
+              "matched": 2.327511
+            }
+          ]
+        },
+        {
+          "text": "Vehicle carrier CO2 emissions increased by 1.6% from 2023 to 2025, despite a 1.6% decrease in the number of ships.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "1.6%",
+              "supported": true,
+              "matched": 1.604798
+            },
+            {
+              "text": "1.6%",
+              "supported": true,
+              "matched": 1.604798
+            }
+          ]
+        },
+        {
+          "text": "The ETS cost for vehicle carriers more than doubled from 2024 to 2025, increasing from \u20ac67,082,421 to \u20ac136,165,586.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "67,082,421",
+              "supported": true,
+              "matched": 67082421.0
+            },
+            {
+              "text": "136,165,586",
+              "supported": true,
+              "matched": 136165586.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "efficiency",
+      "model": "qwen2.5:7b-instruct",
+      "latency_s": 31.244,
+      "input_tokens": 478,
+      "output_tokens": 101,
+      "findings": [
+        {
+          "text": "Ro-ro ships reduced CO2 emissions per nautical mile by 1.8% from 2021 to 2025",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "1.8%",
+              "supported": true,
+              "matched": 1.791713
+            }
+          ]
+        },
+        {
+          "text": "Vehicle carriers saw a 22.1% decrease in CO2 emissions per nautical mile from 2021 to 2025",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "22.1%",
+              "supported": false,
+              "matched": null
+            }
+          ]
+        },
+        {
+          "text": "Vehicle carriers had a higher CO2 emission rate per nautical mile than Ro-ro ships in 2021, with a difference of 53.7 kg",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "53.7",
+              "supported": false,
+              "matched": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "ratings",
+      "model": "qwen2.5:7b-instruct",
+      "latency_s": 44.248,
+      "input_tokens": 372,
+      "output_tokens": 165,
+      "findings": [
+        {
+          "text": "The share of Ro-ro ships rated A or B increased from 27.2% in 2024 to 26.1% in 2025, while the share rated D or E decreased from 34.7% to 35.6%.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "27.2%",
+              "supported": true,
+              "matched": 27.2
+            },
+            {
+              "text": "26.1%",
+              "supported": true,
+              "matched": 26.1
+            },
+            {
+              "text": "34.7%",
+              "supported": true,
+              "matched": 34.7
+            },
+            {
+              "text": "35.6%",
+              "supported": true,
+              "matched": 35.6
+            }
+          ]
+        },
+        {
+          "text": "The share of vehicle carriers rated A or B improved from 24.8% in 2024 to 32.5% in 2025, while the share rated D or E decreased from 41.3% to 37.8%.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "24.8%",
+              "supported": true,
+              "matched": 24.8
+            },
+            {
+              "text": "32.5%",
+              "supported": true,
+              "matched": 32.5
+            },
+            {
+              "text": "41.3%",
+              "supported": true,
+              "matched": 41.3
+            },
+            {
+              "text": "37.8%",
+              "supported": true,
+              "matched": 37.8
+            }
+          ]
+        },
+        {
+          "text": "The number of rated ship-years for vehicle carriers increased from 407 in 2024 to 431 in 2025, a rise of 6.9%.",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "407",
+              "supported": true,
+              "matched": 407.0
+            },
+            {
+              "text": "431",
+              "supported": true,
+              "matched": 431.0
+            },
+            {
+              "text": "6.9%",
+              "supported": false,
+              "matched": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "ports",
+      "model": "qwen2.5:7b-instruct",
+      "latency_s": 30.123,
+      "input_tokens": 359,
+      "output_tokens": 110,
+      "findings": [
+        {
+          "text": "Stavanger had the highest number of port calls with 87, more than double the number of calls at Bergen, which had 45.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "87",
+              "supported": true,
+              "matched": 87.0
+            },
+            {
+              "text": "45",
+              "supported": true,
+              "matched": 45.0
+            }
+          ]
+        },
+        {
+          "text": "The port of Drammen had the longest median berth hours at 8.5 hours, significantly higher than the average of 4.0 hours seen at \u00c5lesund and Husnes.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "8.5",
+              "supported": true,
+              "matched": 8.5
+            },
+            {
+              "text": "4.0",
+              "supported": true,
+              "matched": 4.0
+            }
+          ]
+        },
+        {
+          "text": "Stavanger also had the highest share of port calls, accounting for 17% of all calls, while \u00c5lesund had the second-highest share at 6%.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "17%",
+              "supported": true,
+              "matched": 16.666667
+            },
+            {
+              "text": "6%",
+              "supported": true,
+              "matched": 6.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "carbon_price",
+      "model": "qwen2.5:7b-instruct",
+      "latency_s": 38.35,
+      "input_tokens": 404,
+      "output_tokens": 145,
+      "findings": [
+        {
+          "text": "The average EU ETS allowance price for vehicle carriers and ro-ro ships increased by 52.9% from 2021 to 2022, reaching 81.35 EUR per tonne.",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "52.9%",
+              "supported": false,
+              "matched": null
+            },
+            {
+              "text": "81.35",
+              "supported": true,
+              "matched": 81.35
+            }
+          ]
+        },
+        {
+          "text": "In 2024, the average EU ETS allowance price dropped by 18.2% compared to 2023, to 66.58 EUR per tonne.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "18.2%",
+              "supported": true,
+              "matched": -18.156116
+            },
+            {
+              "text": "66.58",
+              "supported": true,
+              "matched": 66.58
+            }
+          ]
+        },
+        {
+          "text": "The highest EU ETS allowance price observed was 98.01 EUR per tonne in 2022, which is 72.2% higher than the lowest price of 58.3 EUR per tonne that year.",
+          "status": "unsupported",
+          "numbers": [
+            {
+              "text": "98.01",
+              "supported": true,
+              "matched": 98.01
+            },
+            {
+              "text": "72.2%",
+              "supported": false,
+              "matched": null
+            },
+            {
+              "text": "58.3",
+              "supported": true,
+              "matched": 58.3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stopped": null,
+  "findings": 15,
+  "supported": 10,
+  "unsupported": 5,
+  "no_numbers": 0,
+  "share_supported": 0.667,
+  "share_unsupported": 0.333
+}

@@ -1,0 +1,344 @@
+[
+  {
+    "measure": "CO2 (t)",
+    "ok": true,
+    "value": 80629915.3772,
+    "error": null
+  },
+  {
+    "measure": "Fuel (t)",
+    "ok": true,
+    "value": 25845927.9872,
+    "error": null
+  },
+  {
+    "measure": "Distance (nm)",
+    "ok": true,
+    "value": 243133740.5339,
+    "error": null
+  },
+  {
+    "measure": "Hours at Sea",
+    "ok": true,
+    "value": 17302124.43,
+    "error": null
+  },
+  {
+    "measure": "Ships Reporting",
+    "ok": true,
+    "value": 1042,
+    "error": null
+  },
+  {
+    "measure": "Ship-Years",
+    "ok": true,
+    "value": 5692,
+    "error": null
+  },
+  {
+    "measure": "Quality-Checked Share",
+    "ok": true,
+    "value": 0.9841883345045678,
+    "error": null
+  },
+  {
+    "measure": "CO2 per nm (kg)",
+    "ok": true,
+    "value": 332.7446074791057,
+    "error": null
+  },
+  {
+    "measure": "Fuel per nm (kg)",
+    "ok": true,
+    "value": 106.43932531533176,
+    "error": null
+  },
+  {
+    "measure": "Average Speed (kn)",
+    "ok": true,
+    "value": 14.268434982582836,
+    "error": null
+  },
+  {
+    "measure": "CO2 per Tonne-Mile (g)",
+    "ok": true,
+    "value": 50.07434424068231,
+    "error": null
+  },
+  {
+    "measure": "Carbon Factor (t CO2 per t fuel)",
+    "ok": true,
+    "value": 3.119637082372564,
+    "error": null
+  },
+  {
+    "measure": "CO2 in EU ETS Scope (t)",
+    "ok": true,
+    "value": 59058579.0603,
+    "error": null
+  },
+  {
+    "measure": "EU ETS Scope Share",
+    "ok": true,
+    "value": 0.7324648523319696,
+    "error": null
+  },
+  {
+    "measure": "Allowances Due (t)",
+    "ok": true,
+    "value": 7291641.5547,
+    "error": null
+  },
+  {
+    "measure": "EU ETS Cost (EUR)",
+    "ok": true,
+    "value": 524472564.4114,
+    "error": null
+  },
+  {
+    "measure": "EU ETS Cost per Ship (EUR)",
+    "ok": true,
+    "value": 503332.5954,
+    "error": null
+  },
+  {
+    "measure": "EU ETS Cost at Scenario Price (EUR)",
+    "ok": true,
+    "value": 4429393429.5225,
+    "error": null
+  },
+  {
+    "measure": "Average EUA Price (EUR/t)",
+    "ok": true,
+    "value": 55.5859,
+    "error": null
+  },
+  {
+    "measure": "Latest EUA Price (EUR/t)",
+    "ok": true,
+    "value": 85.97,
+    "error": null
+  },
+  {
+    "measure": "EUA Price Range (EUR/t)",
+    "ok": true,
+    "value": 92.68,
+    "error": null
+  },
+  {
+    "measure": "Rated Ship-Years",
+    "ok": true,
+    "value": 4505,
+    "error": null
+  },
+  {
+    "measure": "Share Rated D or E",
+    "ok": true,
+    "value": 0.3749167591564928,
+    "error": null
+  },
+  {
+    "measure": "Share Rated A or B",
+    "ok": true,
+    "value": 0.28901220865704774,
+    "error": null
+  },
+  {
+    "measure": "Average CII Ratio",
+    "ok": true,
+    "value": 1.0576,
+    "error": null
+  },
+  {
+    "measure": "Ships with Worsening Rating",
+    "ok": true,
+    "value": 551,
+    "error": null
+  },
+  {
+    "measure": "Port Calls",
+    "ok": true,
+    "value": 666,
+    "error": null
+  },
+  {
+    "measure": "Median Waiting Time (h)",
+    "ok": true,
+    "value": 0,
+    "error": null
+  },
+  {
+    "measure": "Average Waiting Time when Waiting (h)",
+    "ok": true,
+    "value": 2.9552,
+    "error": null
+  },
+  {
+    "measure": "Share of Calls with Waiting",
+    "ok": true,
+    "value": 0.003003003003003003,
+    "error": null
+  },
+  {
+    "measure": "Total Waiting Time (h)",
+    "ok": true,
+    "value": 5.9103,
+    "error": null
+  },
+  {
+    "measure": "Median Berth Time (h)",
+    "ok": true,
+    "value": 3.9179,
+    "error": null
+  },
+  {
+    "measure": "Calls Confirmed by Kystverket",
+    "ok": true,
+    "value": 0.6295180722891566,
+    "error": null
+  },
+  {
+    "measure": "Voyage Legs",
+    "ok": true,
+    "value": 605,
+    "error": null
+  },
+  {
+    "measure": "Legs Arriving",
+    "ok": true,
+    "value": 605,
+    "error": null
+  },
+  {
+    "measure": "Leg Distance (nm)",
+    "ok": true,
+    "value": 83494.5788,
+    "error": null
+  },
+  {
+    "measure": "Leg Speed (kn)",
+    "ok": true,
+    "value": 12.344880029989213,
+    "error": null
+  },
+  {
+    "measure": "Average Wind (m/s)",
+    "ok": true,
+    "value": 4.926589650360834,
+    "error": null
+  },
+  {
+    "measure": "Average Wave Height (m)",
+    "ok": true,
+    "value": 1.0976569468318715,
+    "error": null
+  },
+  {
+    "measure": "Rough Weather Share",
+    "ok": true,
+    "value": 0.091316182595203,
+    "error": null
+  },
+  {
+    "measure": "Speed Elasticity",
+    "ok": true,
+    "value": 0.247,
+    "error": null
+  },
+  {
+    "measure": "Scenario CO2 (t)",
+    "ok": true,
+    "value": 78558666.6723,
+    "error": null
+  },
+  {
+    "measure": "CO2 Saved (t)",
+    "ok": true,
+    "value": 2071248.7049,
+    "error": null
+  },
+  {
+    "measure": "Fuel Cost Saved (EUR)",
+    "ok": true,
+    "value": 365166446.48,
+    "error": null
+  },
+  {
+    "measure": "EU ETS Cost Saved (EUR)",
+    "ok": true,
+    "value": 113783765.75999999,
+    "error": null
+  },
+  {
+    "measure": "Extra Sailing Days",
+    "ok": true,
+    "value": 80102.4279,
+    "error": null
+  },
+  {
+    "measure": "Extra Days per Ship",
+    "ok": true,
+    "value": 76.8737,
+    "error": null
+  },
+  {
+    "measure": "Efficiency Rank",
+    "ok": true,
+    "value": null,
+    "error": null
+  },
+  {
+    "measure": "Segment Peer CO2 per nm (kg)",
+    "ok": true,
+    "value": null,
+    "error": null
+  },
+  {
+    "measure": "Variance vs Segment Peers",
+    "ok": true,
+    "value": null,
+    "error": null
+  },
+  {
+    "measure": "Size-Class Peer CO2 per nm (kg)",
+    "ok": true,
+    "value": null,
+    "error": null
+  },
+  {
+    "measure": "Variance vs Size-Class Peers",
+    "ok": true,
+    "value": null,
+    "error": null
+  },
+  {
+    "measure": "Ship Label",
+    "ok": true,
+    "value": "Several ships",
+    "error": null
+  },
+  {
+    "measure": "Selected Scope Label",
+    "ok": true,
+    "value": "Ships: 1,042  |  Ship-years: 5,692",
+    "error": null
+  },
+  {
+    "measure": "Speed Change Value",
+    "ok": true,
+    "value": -0.1,
+    "error": null
+  },
+  {
+    "measure": "Carbon Price Scenario Value",
+    "ok": true,
+    "value": 75,
+    "error": null
+  },
+  {
+    "measure": "Fuel Price Value",
+    "ok": true,
+    "value": 550,
+    "error": null
+  }
+]

@@ -1,0 +1,12 @@
+/// Sees only ro-ro ships and their port calls and voyages.
+role 'Ro-ro Ships Only'
+	modelPermission: read
+
+	tablePermission Segment = Segment[Segment] = "Ro-ro ship"
+
+	tablePermission Ship = Ship[Ship Segment] = "Ro-ro ship"
+
+	annotation PBI_Id = 46fc3daf4b885996925332ea8acb3f7a
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["REMOVE_ROLES_WITH_NO_MEMBERS"]}
+

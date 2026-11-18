@@ -1,0 +1,64 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "384c43c09b7754579257",
+  "position": {
+    "x": 16,
+    "y": 692,
+    "z": 3000,
+    "width": 1248,
+    "height": 24,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Developed by Reza Azad Gholami  |  github.com/eigenreza/shipping-performance-analytics  |  Data: EU MRV (EMSA), Kystverket AIS (NLOD), Open-Meteo (CC BY 4.0), Ember (CC-BY-4.0)",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#5B6B7F"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

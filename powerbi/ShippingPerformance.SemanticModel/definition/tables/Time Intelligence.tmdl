@@ -1,0 +1,42 @@
+/// Calculation group: applies year to date, prior year, year over year and rolling 12 months to any measure.
+table 'Time Intelligence'
+	lineageTag: 336e848f-035f-546d-9b67-43faa958b3d2
+
+	calculationGroup
+		precedence: 10
+
+		calculationItem Current = SELECTEDMEASURE()
+
+		calculationItem 'Year to Date' = CALCULATE(SELECTEDMEASURE(), DATESYTD('Date'[Date]))
+
+		calculationItem 'Prior Year' = CALCULATE(SELECTEDMEASURE(), SAMEPERIODLASTYEAR('Date'[Date]))
+
+		calculationItem 'Year over Year' = VAR cur = SELECTEDMEASURE() VAR py = CALCULATE(SELECTEDMEASURE(), SAMEPERIODLASTYEAR('Date'[Date])) RETURN IF(NOT ISBLANK(cur) && NOT ISBLANK(py), cur - py)
+
+		calculationItem 'Year over Year %' = VAR cur = SELECTEDMEASURE() VAR py = CALCULATE(SELECTEDMEASURE(), SAMEPERIODLASTYEAR('Date'[Date])) RETURN DIVIDE(cur - py, py)
+
+			formatStringDefinition = "#,0.0%;-#,0.0%;#,0.0%"
+
+		calculationItem 'Rolling 12 Months' = CALCULATE(SELECTEDMEASURE(), DATESINPERIOD('Date'[Date], MAX('Date'[Date]), -12, MONTH))
+
+	column 'Time Calculation'
+		dataType: string
+		lineageTag: 05dcf94c-aec3-59a5-95d3-0ed9d834b006
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cb42223f-ab67-5eec-a90c-334e3ce1d1dd
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["ENSURE_TABLES_HAVE_RELATIONSHIPS"]}
+

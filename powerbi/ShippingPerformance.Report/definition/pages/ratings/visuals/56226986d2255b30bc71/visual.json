@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "56226986d2255b30bc71",
+  "position": {
+    "x": 16,
+    "y": 52,
+    "z": 2000,
+    "width": 1248,
+    "height": 74,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "What this is: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "IMO carbon intensity ratings (CII, A best to E worst) per ship and year, computed from MRV data as an approximation.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "How to use it: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Pick a segment. The list on the right shows ships whose rating got worse than the year before.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "What to notice: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Required intensity tightens every year, so a ship that does not improve drifts toward D and E.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

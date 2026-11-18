@@ -1,0 +1,30 @@
+/// What-if parameter: EU ETS allowance price in EUR per tonne for the scenarios.
+table 'Carbon Price Scenario'
+	lineageTag: bce79584-dea5-5a5f-af28-6b2efd6168b7
+
+	/// Value chosen with the Carbon Price Scenario parameter (default 75).
+	measure 'Carbon Price Scenario Value' = SELECTEDVALUE('Carbon Price Scenario'[Carbon Price Scenario], 75)
+		formatString: #,0
+		displayFolder: Scenarios
+		lineageTag: 9f2ab48a-5e29-5710-bdf0-40e109bfcb13
+
+	column 'Carbon Price Scenario'
+		dataType: decimal
+		formatString: #,0
+		lineageTag: 88f620a7-d942-5150-b4ab-2f87b00cd2bd
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Carbon Price Scenario' = calculated
+		mode: import
+		source = GENERATESERIES(CURRENCY(0), CURRENCY(200), CURRENCY(5))
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["ENSURE_TABLES_HAVE_RELATIONSHIPS", "REDUCE_USAGE_OF_CALCULATED_TABLES"]}
+

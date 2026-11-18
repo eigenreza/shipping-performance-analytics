@@ -1,0 +1,904 @@
+{
+  "question": "Which ships drift toward poor carbon ratings?",
+  "latest_year": 2025,
+  "first_official_year": 2023,
+  "share_d_or_e_latest": 0.3706,
+  "share_d_or_e_latest_interval": [
+    0.3344,
+    0.4083
+  ],
+  "ships_compared": 520,
+  "ships_worse_than_first_year": 116,
+  "ships_better_than_first_year": 120,
+  "ships_worse_than_previous_year": {
+    "2019": 0,
+    "2020": 152,
+    "2021": 171,
+    "2022": 165,
+    "2023": 130,
+    "2024": 119,
+    "2025": 119
+  },
+  "by_year_segment": [
+    {
+      "year": 2019,
+      "segment": "Ro-ro ship",
+      "rated": 260,
+      "share_d_or_e": 0.3423,
+      "low": 0.2873,
+      "high": 0.4019,
+      "n_A": 64,
+      "n_B": 32,
+      "n_C": 75,
+      "n_D": 59,
+      "n_E": 30
+    },
+    {
+      "year": 2019,
+      "segment": "Vehicle carrier",
+      "rated": 404,
+      "share_d_or_e": 0.3317,
+      "low": 0.2875,
+      "high": 0.379,
+      "n_A": 53,
+      "n_B": 82,
+      "n_C": 135,
+      "n_D": 74,
+      "n_E": 60
+    },
+    {
+      "year": 2020,
+      "segment": "Ro-ro ship",
+      "rated": 232,
+      "share_d_or_e": 0.3707,
+      "low": 0.3111,
+      "high": 0.4345,
+      "n_A": 33,
+      "n_B": 39,
+      "n_C": 74,
+      "n_D": 48,
+      "n_E": 38
+    },
+    {
+      "year": 2020,
+      "segment": "Vehicle carrier",
+      "rated": 421,
+      "share_d_or_e": 0.2993,
+      "low": 0.2575,
+      "high": 0.3447,
+      "n_A": 74,
+      "n_B": 77,
+      "n_C": 144,
+      "n_D": 64,
+      "n_E": 62
+    },
+    {
+      "year": 2021,
+      "segment": "Ro-ro ship",
+      "rated": 210,
+      "share_d_or_e": 0.4048,
+      "low": 0.3407,
+      "high": 0.4723,
+      "n_A": 16,
+      "n_B": 38,
+      "n_C": 71,
+      "n_D": 50,
+      "n_E": 35
+    },
+    {
+      "year": 2021,
+      "segment": "Vehicle carrier",
+      "rated": 430,
+      "share_d_or_e": 0.3767,
+      "low": 0.3322,
+      "high": 0.4234,
+      "n_A": 60,
+      "n_B": 79,
+      "n_C": 129,
+      "n_D": 99,
+      "n_E": 63
+    },
+    {
+      "year": 2022,
+      "segment": "Ro-ro ship",
+      "rated": 216,
+      "share_d_or_e": 0.3565,
+      "low": 0.2956,
+      "high": 0.4224,
+      "n_A": 25,
+      "n_B": 41,
+      "n_C": 73,
+      "n_D": 47,
+      "n_E": 30
+    },
+    {
+      "year": 2022,
+      "segment": "Vehicle carrier",
+      "rated": 430,
+      "share_d_or_e": 0.4512,
+      "low": 0.4048,
+      "high": 0.4984,
+      "n_A": 39,
+      "n_B": 51,
+      "n_C": 146,
+      "n_D": 94,
+      "n_E": 100
+    },
+    {
+      "year": 2023,
+      "segment": "Ro-ro ship",
+      "rated": 213,
+      "share_d_or_e": 0.3427,
+      "low": 0.2823,
+      "high": 0.4087,
+      "n_A": 22,
+      "n_B": 32,
+      "n_C": 86,
+      "n_D": 42,
+      "n_E": 31
+    },
+    {
+      "year": 2023,
+      "segment": "Vehicle carrier",
+      "rated": 416,
+      "share_d_or_e": 0.4303,
+      "low": 0.3836,
+      "high": 0.4783,
+      "n_A": 34,
+      "n_B": 54,
+      "n_C": 149,
+      "n_D": 104,
+      "n_E": 75
+    },
+    {
+      "year": 2024,
+      "segment": "Ro-ro ship",
+      "rated": 213,
+      "share_d_or_e": 0.3474,
+      "low": 0.2867,
+      "high": 0.4136,
+      "n_A": 25,
+      "n_B": 33,
+      "n_C": 81,
+      "n_D": 41,
+      "n_E": 33
+    },
+    {
+      "year": 2024,
+      "segment": "Vehicle carrier",
+      "rated": 407,
+      "share_d_or_e": 0.4128,
+      "low": 0.366,
+      "high": 0.4612,
+      "n_A": 53,
+      "n_B": 48,
+      "n_C": 138,
+      "n_D": 119,
+      "n_E": 49
+    },
+    {
+      "year": 2025,
+      "segment": "Ro-ro ship",
+      "rated": 222,
+      "share_d_or_e": 0.3559,
+      "low": 0.2958,
+      "high": 0.4208,
+      "n_A": 26,
+      "n_B": 32,
+      "n_C": 85,
+      "n_D": 42,
+      "n_E": 37
+    },
+    {
+      "year": 2025,
+      "segment": "Vehicle carrier",
+      "rated": 431,
+      "share_d_or_e": 0.3782,
+      "low": 0.3337,
+      "high": 0.4249,
+      "n_A": 70,
+      "n_B": 70,
+      "n_C": 128,
+      "n_D": 100,
+      "n_E": 63
+    }
+  ],
+  "drifting_ships": [
+    {
+      "ship": "Carrier 556",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 601",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 385",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 402",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 447",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 051",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 146",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 060",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 253",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 260",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 266",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 350",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 225",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 562",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 691",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 005",
+      "segment": "Vehicle carrier",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 006",
+      "segment": "Ro-ro ship",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 012",
+      "segment": "Ro-ro ship",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 114",
+      "segment": "Vehicle carrier",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 065",
+      "segment": "Ro-ro ship",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 088",
+      "segment": "Ro-ro ship",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 226",
+      "segment": "Vehicle carrier",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 366",
+      "segment": "Vehicle carrier",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 369",
+      "segment": "Vehicle carrier",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 156",
+      "segment": "Ro-ro ship",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 237",
+      "segment": "Ro-ro ship",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 552",
+      "segment": "Vehicle carrier",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 251",
+      "segment": "Ro-ro ship",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 567",
+      "segment": "Vehicle carrier",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 263",
+      "segment": "Ro-ro ship",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 285",
+      "segment": "Ro-ro ship",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 299",
+      "segment": "Ro-ro ship",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 688",
+      "segment": "Vehicle carrier",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Ro-ro 316",
+      "segment": "Ro-ro ship",
+      "rating_first": "D",
+      "rating_latest": "E"
+    },
+    {
+      "ship": "Carrier 056",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 066",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 071",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 213",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 517",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 618",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 630",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Ro-ro 003",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 018",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 030",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 034",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 052",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Ro-ro 019",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 073",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Ro-ro 027",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 097",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Ro-ro 035",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 109",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 161",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 164",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 167",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 195",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 196",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 224",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 230",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 275",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 295",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 296",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 298",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Ro-ro 131",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Ro-ro 139",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 335",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Ro-ro 148",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Ro-ro 150",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Ro-ro 155",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 379",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 381",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 417",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 449",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Ro-ro 216",
+      "segment": "Ro-ro ship",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 502",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 527",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 540",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 563",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 588",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 602",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 620",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 660",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 683",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 708",
+      "segment": "Vehicle carrier",
+      "rating_first": "C",
+      "rating_latest": "D"
+    },
+    {
+      "ship": "Carrier 102",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 063",
+      "segment": "Ro-ro ship",
+      "rating_first": "A",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 305",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 327",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 008",
+      "segment": "Ro-ro ship",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 039",
+      "segment": "Ro-ro ship",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 052",
+      "segment": "Ro-ro ship",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 144",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 183",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 075",
+      "segment": "Ro-ro ship",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 218",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 229",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 236",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 274",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 134",
+      "segment": "Ro-ro ship",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 141",
+      "segment": "Ro-ro ship",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 407",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 422",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 442",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 221",
+      "segment": "Ro-ro ship",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 257",
+      "segment": "Ro-ro ship",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 585",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 622",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 280",
+      "segment": "Ro-ro ship",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 648",
+      "segment": "Vehicle carrier",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 289",
+      "segment": "Ro-ro ship",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Ro-ro 290",
+      "segment": "Ro-ro ship",
+      "rating_first": "B",
+      "rating_latest": "C"
+    },
+    {
+      "ship": "Carrier 092",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "B"
+    },
+    {
+      "ship": "Carrier 433",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "B"
+    },
+    {
+      "ship": "Carrier 520",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "B"
+    },
+    {
+      "ship": "Carrier 647",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "B"
+    },
+    {
+      "ship": "Carrier 719",
+      "segment": "Vehicle carrier",
+      "rating_first": "A",
+      "rating_latest": "B"
+    }
+  ]
+}

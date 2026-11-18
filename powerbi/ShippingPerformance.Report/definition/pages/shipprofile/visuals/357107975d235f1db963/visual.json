@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "357107975d235f1db963",
+  "position": {
+    "x": 16,
+    "y": 52,
+    "z": 2000,
+    "width": 1248,
+    "height": 74,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "What this is: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "One pseudonymous ship over time: efficiency, carbon rating and how it compares with ships of the same segment and size.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "How to use it: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Reach this page by right-clicking a ship on another page and choosing Drill through > Ship profile. Use the back arrow to return.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "What to notice: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "A ship with a large positive variance against its size class burns more per mile than its peers at similar size.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

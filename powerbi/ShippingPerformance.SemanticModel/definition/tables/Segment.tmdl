@@ -1,0 +1,55 @@
+/// Fleet segment: vehicle carriers or ro-ro ships. Conformed dimension shared by all fact tables.
+table Segment
+	lineageTag: e124d297-f804-57f2-a57b-807f2d5ccf31
+
+	column 'Segment Key'
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		isAvailableInMdx: false
+		lineageTag: fda3e540-4a38-566b-87bc-8fc874393eb7
+		summarizeBy: none
+		sourceColumn: segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Vehicle carrier or Ro-ro ship.
+	column Segment
+		dataType: string
+		lineageTag: 0843379b-7acc-5416-b7cf-8b04829dde89
+		summarizeBy: none
+		sourceColumn: segment_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Plain description of the segment.
+	column 'Segment Description'
+		dataType: string
+		lineageTag: f869e442-d5ec-5210-a5ed-26c622a3bcf0
+		summarizeBy: none
+		sourceColumn: segment_description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Capacity used for the carbon intensity rating (gross tonnage for both segments).
+	column 'CII Capacity Measure'
+		dataType: string
+		lineageTag: fea5ed13-dc1a-5716-b005-d9b25e9bea6b
+		summarizeBy: none
+		sourceColumn: cii_capacity_measure
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Segment = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(GoldFile("dim_segment.parquet")),
+				    Selected = Table.SelectColumns(Source, {"segment_id", "segment_key", "segment_description", "cii_capacity_measure"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"segment_id", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

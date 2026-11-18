@@ -1,0 +1,77 @@
+/// Parameters estimated by the analysis (for example the speed elasticity of fuel per nautical mile) with their uncertainty intervals.
+table 'Model Parameters'
+	lineageTag: 183eaffa-b3b2-5f64-9338-3e8c59941761
+
+	/// Parameter name.
+	column Parameter
+		dataType: string
+		lineageTag: ae68ff95-0dca-5138-9e1c-3499535d7137
+		summarizeBy: none
+		sourceColumn: parameter
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Segment the estimate applies to (All for the pooled fleet).
+	column 'Parameter Segment'
+		dataType: string
+		lineageTag: 2cde80eb-f016-51dd-8539-d99e8217057e
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Point estimate (read by the Speed Elasticity measure).
+	column Value
+		dataType: decimal
+		isHidden
+		formatString: 0.000
+		isAvailableInMdx: false
+		lineageTag: 45b02704-aa57-540e-9914-8773ed2b04a8
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Lower end of the 95% bootstrap interval.
+	column 'Interval Low'
+		dataType: decimal
+		formatString: 0.000
+		lineageTag: 3f5cd89d-4035-542e-a85e-084b8a1db4fa
+		summarizeBy: none
+		sourceColumn: low
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Upper end of the 95% bootstrap interval.
+	column 'Interval High'
+		dataType: decimal
+		formatString: 0.000
+		lineageTag: 0704f454-3979-5135-8d9a-1ed879f96367
+		summarizeBy: none
+		sourceColumn: high
+
+		annotation SummarizationSetBy = Automatic
+
+	/// What the parameter means.
+	column 'Parameter Description'
+		dataType: string
+		lineageTag: 27232080-283a-50ce-8fcb-564c53af5008
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Model Parameters' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(GoldFile("model_parameters.parquet")),
+				    Selected = Table.SelectColumns(Source, {"parameter", "segment", "value", "low", "high", "description"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"value", Currency.Type}, {"low", Currency.Type}, {"high", Currency.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["ENSURE_TABLES_HAVE_RELATIONSHIPS"]}
+

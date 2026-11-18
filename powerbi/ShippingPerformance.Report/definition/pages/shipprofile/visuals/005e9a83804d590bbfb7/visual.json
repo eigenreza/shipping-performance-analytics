@@ -1,0 +1,137 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "005e9a83804d590bbfb7",
+  "position": {
+    "x": 648,
+    "y": 220,
+    "z": 9000,
+    "width": 616,
+    "height": 464,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ship Year Emissions"
+                    }
+                  },
+                  "Property": "Reporting Year"
+                }
+              },
+              "queryRef": "Ship Year Emissions.Reporting Year",
+              "nativeQueryRef": "Reporting Year"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Average Speed (kn)"
+                }
+              },
+              "queryRef": "Metrics.Average Speed (kn)",
+              "nativeQueryRef": "Average Speed (kn)",
+              "displayName": "Speed (kn)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "CO2 (t)"
+                }
+              },
+              "queryRef": "Metrics.CO2 (t)",
+              "nativeQueryRef": "CO2 (t)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ship Year Emissions"
+                    }
+                  },
+                  "Property": "CII Rating"
+                }
+              },
+              "queryRef": "Ship Year Emissions.CII Rating",
+              "nativeQueryRef": "CII Rating",
+              "displayName": "Rating"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Average CII Ratio"
+                }
+              },
+              "queryRef": "Metrics.Average CII Ratio",
+              "nativeQueryRef": "Average CII Ratio",
+              "displayName": "Attained / required"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Ship Year Emissions"
+                  }
+                },
+                "Property": "Reporting Year"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Year by year'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

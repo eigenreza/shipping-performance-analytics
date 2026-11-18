@@ -1,0 +1,43 @@
+/// Choice of speed relation for the slow steaming scenarios: estimated from MRV data, or the engineering rule.
+table 'Speed Relation'
+	lineageTag: 73afb85f-4746-5c61-ad60-8dddcd78df9d
+
+	column 'Speed Relation'
+		dataType: string
+		lineageTag: a17d94d7-2928-51c9-a999-13ada067bba8
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Speed Relation Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Key'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: afc6c648-ec9f-57d2-bb76-22608ff6d7f8
+		summarizeBy: none
+		sourceColumn: [Value2]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Speed Relation Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 26983cb7-77f0-5587-8806-9d7d9f006925
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Speed Relation' = calculated
+		mode: import
+		source =
+				{
+				    ("Estimated from MRV data", "speed_elasticity_mrv", 1),
+				    ("Engineering rule (fuel per mile ~ speed squared)", "speed_elasticity_engineering", 2)
+				}
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["ENSURE_TABLES_HAVE_RELATIONSHIPS", "REDUCE_USAGE_OF_CALCULATED_TABLES"]}
+

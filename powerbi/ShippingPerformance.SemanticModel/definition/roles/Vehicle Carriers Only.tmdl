@@ -1,0 +1,12 @@
+/// Sees only vehicle carriers and their port calls and voyages.
+role 'Vehicle Carriers Only'
+	modelPermission: read
+
+	tablePermission Segment = Segment[Segment] = "Vehicle carrier"
+
+	tablePermission Ship = Ship[Ship Segment] = "Vehicle carrier"
+
+	annotation PBI_Id = 42a89799687d5d00ad91a3080248acd6
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["REMOVE_ROLES_WITH_NO_MEMBERS"]}
+

@@ -1,0 +1,53 @@
+relationship 79d63ed0-f8f6-5e2d-8c8f-38543014d141
+	fromColumn: 'Ship Year Emissions'.ship_version_key
+	toColumn: Ship.ship_version_key
+
+relationship 4a0e639b-4f5e-5317-9225-8435cea92dca
+	fromColumn: 'Ship Year Emissions'.segment_id
+	toColumn: Segment.'Segment Key'
+
+relationship d01dc053-1595-5958-8efa-4b7c48738ced
+	fromColumn: 'Ship Year Emissions'.date_id
+	toColumn: Date.'Date Key'
+
+relationship 0a2d2994-a385-5259-be2b-dcafaf7f0238
+	fromColumn: 'Port Calls'.ship_version_key
+	toColumn: Ship.ship_version_key
+
+relationship e272fbac-4773-5439-aa23-3a65d1de032e
+	fromColumn: 'Port Calls'.segment_id
+	toColumn: Segment.'Segment Key'
+
+relationship 1b7014fb-fad8-517b-ba9e-73d50bb9eb7e
+	fromColumn: 'Port Calls'.port_id
+	toColumn: Port.'Port Key'
+
+relationship 50398d3d-a5a6-5607-8047-6326e226df22
+	fromColumn: 'Port Calls'.date_id
+	toColumn: Date.'Date Key'
+
+relationship d087218f-ee39-58f3-b4e3-fe18d730487e
+	fromColumn: 'Voyage Legs'.ship_version_key
+	toColumn: Ship.ship_version_key
+
+relationship b3767cab-9dd6-5706-b6a3-0ee0d12e333d
+	fromColumn: 'Voyage Legs'.segment_id
+	toColumn: Segment.'Segment Key'
+
+relationship f5a16123-1460-50ff-ba7b-fca5caaf7a75
+	fromColumn: 'Voyage Legs'.origin_port_id
+	toColumn: Port.'Port Key'
+
+relationship d532de55-24c3-5b40-9aba-d65cba537546
+	isActive: false
+	fromColumn: 'Voyage Legs'.destination_port_id
+	toColumn: Port.'Port Key'
+
+relationship 1731b858-f529-5b62-b573-f850bc1b2fb3
+	fromColumn: 'Voyage Legs'.date_id
+	toColumn: Date.'Date Key'
+
+relationship e64ed6dc-ec53-5bb0-b600-4109c399da6c
+	fromColumn: 'Carbon Price'.date_id
+	toColumn: Date.'Date Key'
+

@@ -1,0 +1,44 @@
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      Raw Parquet files written by the ingest step (`spa ingest`). Each table is read
+      straight from disk, so the warehouse never holds a second copy of raw data.
+    tables:
+      - name: mrv_ship_year
+        description: EU MRV (THETIS-MRV) public emission reports, one row per ship and reporting year, all ship types.
+        meta:
+          external_location: "read_parquet('{{ var('raw_path') }}/mrv/mrv_*.parquet', union_by_name = true)"
+      - name: eua_daily
+        description: Daily EU ETS allowance price (front December contract, EUR per tonne CO2) from Ember.
+        meta:
+          external_location: "read_parquet('{{ var('raw_path') }}/carbon/eua_daily.parquet')"
+      - name: ais_static
+        description: AIS static ship records for the MRV fleet, used only to link IMO numbers to MMSI and ship dimensions.
+        meta:
+          external_location: "read_parquet('{{ var('raw_path') }}/ais/static_fleet.parquet')"
+      - name: ais_positions
+        description: AIS positions of fleet ships on the Norwegian coast, thinned to one position per two minutes.
+        meta:
+          external_location: "read_parquet('{{ var('raw_path') }}/ais/positions/*.parquet', union_by_name = true)"
+      - name: kystverket_port_calls
+        description: Kystverket port call records (time in port per ship and location), all ship types.
+        meta:
+          external_location: "read_parquet('{{ var('raw_path') }}/ais/port_calls/*.parquet', union_by_name = true)"
+      - name: tonnage_calibration
+        description: Reported gross tonnage and deadweight of ro-ro ships and vehicle carriers from Kystverket port call records.
+        meta:
+          external_location: "read_parquet('{{ var('raw_path') }}/ais/tonnage_calibration.parquet')"
+      - name: kystverket_locations
+        description: Kystverket register of Norwegian harbours, port facilities, quays and anchorages.
+        meta:
+          external_location: "read_parquet('{{ var('raw_path') }}/ports/kystverket_locations.parquet')"
+      - name: weather_wind
+        description: Hourly 10 m wind from the Open-Meteo Historical Weather API (ERA5), per 0.25 degree cell.
+        meta:
+          external_location: "read_parquet('{{ var('raw_path') }}/weather/wind_*.parquet', union_by_name = true)"
+      - name: weather_waves
+        description: Hourly significant wave height from the Open-Meteo Marine Weather API, per 0.5 degree cell.
+        meta:
+          external_location: "read_parquet('{{ var('raw_path') }}/weather/waves_*.parquet', union_by_name = true)"

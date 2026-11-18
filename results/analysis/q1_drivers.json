@@ -1,0 +1,54 @@
+{
+  "question": "What drives fuel efficiency differences between vehicle carriers and ro-ro ships?",
+  "ship_years": 5131,
+  "ships": 928,
+  "ships_within_model": 821,
+  "speed_elasticity_within": {
+    "estimate": -0.0692,
+    "low": -0.1167,
+    "high": -0.0182
+  },
+  "speed_elasticity_by_segment": {
+    "Ro-ro ship": {
+      "estimate": -0.1194,
+      "low": -0.2059,
+      "high": -0.044,
+      "ships": 337
+    },
+    "Vehicle carrier": {
+      "estimate": -0.0594,
+      "low": -0.1265,
+      "high": 0.0079,
+      "ships": 561
+    }
+  },
+  "cross_sectional": {
+    "log_speed": {
+      "estimate": 0.247,
+      "low": 0.1715,
+      "high": 0.3265
+    },
+    "log_gt": {
+      "estimate": 0.3739,
+      "low": 0.3302,
+      "high": 0.4169
+    },
+    "eedi_generation": {
+      "estimate": -0.0625,
+      "low": -0.0919,
+      "high": -0.0317
+    },
+    "vehicle_carrier": {
+      "estimate": -0.3435,
+      "low": -0.3883,
+      "high": -0.3035
+    }
+  },
+  "cross_sectional_r2": 0.5065,
+  "size_effect_doubling_gt_pct": 29.6,
+  "eedi_generation_effect_pct": -6.1,
+  "eedi_generation_effect_interval_pct": [
+    -8.8,
+    -3.1
+  ]
+}

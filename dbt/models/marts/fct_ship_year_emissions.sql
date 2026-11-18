@@ -1,0 +1,41 @@
+-- Grain: one row per ship and MRV reporting year.
+select
+    y.ship_key,
+    v.ship_version_key,
+    y.mrv_ship_type as segment_key,
+    case y.mrv_ship_type when 'Vehicle carrier' then 1 else 2 end as segment_id,
+    reporting_year * 10000 + 1231 as date_id,
+    y.reporting_year,
+    make_date(y.reporting_year, 12, 31) as date_key,
+    y.fuel_t,
+    y.co2_t,
+    y.distance_nm,
+    y.hours_at_sea,
+    y.avg_speed_kn,
+    y.fuel_kg_per_nm,
+    y.co2_kg_per_nm,
+    y.transport_work_tonne_nm,
+    y.co2_g_per_tonne_nm,
+    y.co2_intra_eea_voyages_t,
+    y.co2_departing_eea_t,
+    y.co2_arriving_eea_t,
+    y.co2_at_berth_eea_t,
+    y.co2_ets_scope_t,
+    y.co2_ets_reported_t,
+    y.ets_surrender_share,
+    y.eua_due_t,
+    y.eua_avg_eur,
+    y.ets_cost_eur,
+    y.gross_tonnage,
+    y.cii_attained,
+    y.cii_required,
+    y.cii_ratio,
+    y.cii_rating,
+    y.cii_rating_prev,
+    coalesce(y.is_rating_worse, false) as is_rating_worse,
+    y.is_official_cii_year,
+    y.is_quality_ok
+from {{ ref('int_ship_year') }} y
+join {{ ref('dim_ship') }} v
+  on v.ship_key = y.ship_key
+ and y.reporting_year between v.valid_from_year and v.valid_to_year

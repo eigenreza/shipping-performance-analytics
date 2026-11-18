@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "1482671a99ff5de6bf5a",
+  "position": {
+    "x": 16,
+    "y": 220,
+    "z": 8000,
+    "width": 620,
+    "height": 464,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ship Year Emissions"
+                    }
+                  },
+                  "Property": "Reporting Year"
+                }
+              },
+              "queryRef": "Ship Year Emissions.Reporting Year",
+              "nativeQueryRef": "Reporting Year"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "CO2 per nm (kg)"
+                }
+              },
+              "queryRef": "Metrics.CO2 per nm (kg)",
+              "nativeQueryRef": "CO2 per nm (kg)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Size-Class Peer CO2 per nm (kg)"
+                }
+              },
+              "queryRef": "Metrics.Size-Class Peer CO2 per nm (kg)",
+              "nativeQueryRef": "Size-Class Peer CO2 per nm (kg)",
+              "displayName": "Size-class peers"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'CO2 per nautical mile against size-class peers'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

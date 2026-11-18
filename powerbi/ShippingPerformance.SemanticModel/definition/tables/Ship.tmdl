@@ -1,0 +1,189 @@
+/// Pseudonymous ships, one row per ship version (slowly changing type 2). No names or IMO numbers.
+table Ship
+	lineageTag: 0e3a24df-d7a8-585b-8446-4ede45d03102
+
+	column ship_version_key
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		isAvailableInMdx: false
+		lineageTag: 5ebd65a8-30f1-57f1-93d1-1abe3c31e79f
+		summarizeBy: none
+		sourceColumn: ship_version_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column ship_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		isAvailableInMdx: false
+		lineageTag: 57f4426a-eb14-55ec-8e22-dcf596b5a971
+		summarizeBy: none
+		sourceColumn: ship_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Stable pseudonym, for example Carrier 017. Ships are never shown by name.
+	column Ship
+		dataType: string
+		lineageTag: a8632eb0-96b1-53df-8063-934d766d6ea7
+		summarizeBy: none
+		sourceColumn: ship_pseudonym
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Version number of the ship's attributes (a new version when flag, segment, ice class or efficiency index type changes).
+	column Version
+		dataType: int64
+		formatString: 0
+		lineageTag: 31a0cf20-a50b-5b69-88ac-f94a6a56be40
+		summarizeBy: none
+		sourceColumn: version_no
+
+		annotation SummarizationSetBy = Automatic
+
+	/// First reporting year of this version.
+	column 'Valid From Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: e552a655-3bb1-5be7-aa84-7b913ce79d09
+		summarizeBy: none
+		sourceColumn: valid_from_year
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Last reporting year of this version.
+	column 'Valid To Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: c65b5a2e-af2e-52cb-b8e6-5a17620b7009
+		summarizeBy: none
+		sourceColumn: valid_to_year
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True for the latest version of each ship.
+	column 'Is Current Version'
+		dataType: boolean
+		lineageTag: 3762e330-b063-5c8f-8876-937327b2dd53
+		summarizeBy: none
+		sourceColumn: is_current
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Segment of the ship in this version.
+	column 'Ship Segment'
+		dataType: string
+		lineageTag: c618def8-97ab-5139-ba80-56af481449bb
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Broad region of the flag state, from the MRV port of registry.
+	column 'Flag Region'
+		dataType: string
+		lineageTag: 24509321-a9e0-51f8-9027-48ced2de1c1e
+		summarizeBy: none
+		sourceColumn: flag_region
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Flag state, from the MRV port of registry.
+	column 'Flag State'
+		dataType: string
+		lineageTag: ea511f79-4683-51bd-8440-8137e8dab76e
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: flag_state
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Ice class reported in MRV (None if not ice classed).
+	column 'Ice Class'
+		dataType: string
+		lineageTag: 2a7acbbb-bc9a-54f5-bf3b-16f4c479bc12
+		summarizeBy: none
+		sourceColumn: ice_class
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Technical efficiency index reported in MRV: EEDI, EEXI or EIV.
+	column 'Efficiency Index Type'
+		dataType: string
+		lineageTag: 07491b29-b5dd-5611-a58d-402aca3df1dc
+		summarizeBy: none
+		sourceColumn: technical_index_type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// EEDI generation (contracted 2013 or later) or pre-EEDI. A build-era proxy, since MRV has no build year.
+	column 'Design Generation'
+		dataType: string
+		lineageTag: daac7d58-e5c1-5287-9bbc-d86f10b5a85f
+		summarizeBy: none
+		sourceColumn: design_generation
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Gross tonnage, reported by Kystverket or estimated from AIS length and beam (see Tonnage Method).
+	column 'Gross Tonnage'
+		dataType: decimal
+		formatString: #,0
+		lineageTag: 70a6483e-fa06-5fdb-a4da-593eabda9283
+		summarizeBy: none
+		sourceColumn: gross_tonnage
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Whether gross tonnage is reported or estimated.
+	column 'Tonnage Method'
+		dataType: string
+		lineageTag: e5bb2c09-1c1c-5f8d-a8f9-184d2c1b00c1
+		summarizeBy: none
+		sourceColumn: tonnage_method
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Size band in gross tonnage.
+	column 'Size Class'
+		dataType: string
+		lineageTag: 6734920d-81da-5141-9d98-d913fc4055f8
+		summarizeBy: none
+		sourceColumn: size_class
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Length overall from AIS.
+	column 'Length (m)'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 7c376e14-6744-57c6-8b3f-7a45a8a4392d
+		summarizeBy: none
+		sourceColumn: length_m
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True when the ship could be linked to an AIS identity.
+	column 'Seen in AIS Register'
+		dataType: boolean
+		lineageTag: 1dd9fa90-4abb-55a0-9501-de8c544afad3
+		summarizeBy: none
+		sourceColumn: has_ais_identity
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Ship = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(GoldFile("dim_ship.parquet")),
+				    Selected = Table.SelectColumns(Source, {"ship_version_key", "ship_key", "ship_pseudonym", "version_no", "valid_from_year", "valid_to_year", "is_current", "segment", "flag_region", "flag_state", "ice_class", "technical_index_type", "design_generation", "gross_tonnage", "tonnage_method", "size_class", "length_m", "has_ais_identity"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"gross_tonnage", Currency.Type}, {"ship_version_key", Int64.Type}, {"ship_key", Int64.Type}, {"version_no", Int64.Type}, {"valid_from_year", Int64.Type}, {"valid_to_year", Int64.Type}, {"length_m", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

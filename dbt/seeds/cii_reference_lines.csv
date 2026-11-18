@@ -1,0 +1,5 @@
+segment,capacity_measure,capacity_min,capacity_max,capacity_cap,a,c,source
+Vehicle carrier,GT,57700,,57700,3627,0.590,IMO MEPC.353(78) Table 1
+Vehicle carrier,GT,30000,57700,,3627,0.590,IMO MEPC.353(78) Table 1
+Vehicle carrier,GT,0,30000,,330,0.329,IMO MEPC.353(78) Table 1
+Ro-ro ship,GT,0,,,1967,0.485,IMO MEPC.353(78) Table 1

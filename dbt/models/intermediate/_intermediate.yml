@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: int_fleet_ships
+    description: One row per fleet ship with its salted-hash pseudonym and durable ship_key.
+    columns:
+      - name: imo_number
+        tests: [unique, not_null]
+      - name: ship_key
+        tests: [unique, not_null]
+      - name: ship_pseudonym
+        tests: [unique, not_null]
+  - name: int_ship_identity
+    description: Fleet ships linked to AIS identity and dimensions.
+  - name: int_ais_mmsi_map
+    description: Every MMSI used by a fleet ship during the AIS window.
+  - name: int_ship_capacity
+    description: Gross tonnage per ship, reported or estimated from AIS dimensions, with calibration statistics.
+    columns:
+      - name: imo_number
+        tests: [unique]
+  - name: int_ship_year
+    description: Ship-year metrics with EU ETS exposure and CII rating.
+  - name: int_ais_track
+    description: AIS positions with step time and distance.
+  - name: int_ais_stop_episodes
+    description: Stop episodes from track steps (gaps and islands).
+  - name: int_ais_stops_located
+    description: Stop episodes classified as berth, anchored or stopped at sea and tied to a port.
+    columns:
+      - name: stop_type
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['berth', 'anchored', 'stopped at sea']
+  - name: int_port_calls
+    description: Port calls with waiting time before berthing.
+  - name: int_track_weather
+    description: Under-way positions with hourly wind and wave values.

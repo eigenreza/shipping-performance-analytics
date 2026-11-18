@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "54495ecc5b705679affa",
+  "position": {
+    "x": 648,
+    "y": 502,
+    "z": 13000,
+    "width": 616,
+    "height": 182,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ship"
+                    }
+                  },
+                  "Property": "Ship"
+                }
+              },
+              "queryRef": "Ship.Ship",
+              "nativeQueryRef": "Ship"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ship"
+                    }
+                  },
+                  "Property": "Size Class"
+                }
+              },
+              "queryRef": "Ship.Size Class",
+              "nativeQueryRef": "Size Class"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "CO2 (t)"
+                }
+              },
+              "queryRef": "Metrics.CO2 (t)",
+              "nativeQueryRef": "CO2 (t)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "CO2 per nm (kg)"
+                }
+              },
+              "queryRef": "Metrics.CO2 per nm (kg)",
+              "nativeQueryRef": "CO2 per nm (kg)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Variance vs Segment Peers"
+                }
+              },
+              "queryRef": "Metrics.Variance vs Segment Peers",
+              "nativeQueryRef": "Variance vs Segment Peers",
+              "displayName": "Vs segment"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Metrics"
+                  }
+                },
+                "Property": "CO2 (t)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Largest emitters in the selection'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

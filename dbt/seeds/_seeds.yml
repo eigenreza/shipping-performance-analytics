@@ -1,0 +1,29 @@
+version: 2
+
+seeds:
+  - name: registry_port_flag
+    description: Maps the MRV "port of registry" to its flag state and a broad flag region. Unmapped ports fall into "Other or unknown".
+  - name: eu_ets_phase_in
+    description: >
+      EU ETS phase-in for shipping: the share of verified emissions of a year for which allowances must be
+      surrendered. Methane and nitrous oxide are added from the 2026 emission year.
+    columns:
+      - name: emission_year
+        tests: [unique, not_null]
+      - name: surrender_share
+        tests:
+          - accepted_range:
+              arguments: {min_value: 0, max_value: 1}
+  - name: eu_ets_scope_rules
+    description: Share of emissions counted under the EU ETS by voyage type (intra-EEA, at berth, voyages to or from outside the EEA).
+  - name: fuel_assumptions
+    description: Documented scenario inputs (fuel price, default carbon price). Every assumption is a parameter the user can change.
+  - name: cii_reference_lines
+    description: IMO CII reference line parameters (CII_ref = a * capacity^-c) for the two fleet segments, with capacity bands.
+  - name: cii_reduction_factors
+    description: IMO CII reduction factors Z relative to the 2019 reference line, by rating year.
+    columns:
+      - name: rating_year
+        tests: [unique, not_null]
+  - name: cii_rating_boundaries
+    description: IMO CII rating boundary vectors (exp(d1) to exp(d4)) that split attained CII / required CII into ratings A to E.

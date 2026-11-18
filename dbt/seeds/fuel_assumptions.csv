@@ -1,0 +1,5 @@
+assumption,value,unit,note
+fuel_price,550,EUR per tonne,Scenario input for very low sulphur fuel oil; a round figure that the user can change in the report and the demo
+default_carbon_price,75,EUR per tonne CO2,Starting value for the carbon price what-if parameter
+co2_per_tonne_fuel_hfo,3.114,t CO2 per t fuel,IMO default carbon factor for heavy fuel oil (used only as a plausibility check)
+day_cost,40000,EUR per ship-day,Scenario input for the daily cost of a ship at sea (charter hire and running costs); a round planning figure that the user can change in the demo

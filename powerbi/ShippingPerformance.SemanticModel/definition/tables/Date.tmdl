@@ -1,0 +1,119 @@
+/// Calendar from 2018 to the data end date (30 September 2026). Marked as the date table.
+table Date
+	lineageTag: 02c8a69f-4407-5114-8ead-61f2479bf8cd
+	dataCategory: Time
+
+	/// Integer date key (yyyymmdd) used by relationships.
+	column 'Date Key'
+		dataType: int64
+		isHidden
+		formatString: 0
+		isAvailableInMdx: false
+		lineageTag: b9472543-6b7a-53a1-bd45-5a1e1de5b6d6
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Calendar date.
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: mm/dd/yyyy
+		lineageTag: aa152c5c-d22d-5cc1-87c4-98d3f442b981
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Calendar year.
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 4aaee384-ffb1-5adc-8177-7cdec04e02df
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter Number'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c0e56d90-4665-5c21-b5f5-02017c7e0d24
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bdfbfec5-61d9-5ed8-86f5-762f95d01c34
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Month name, sorted by month number.
+	column Month
+		dataType: string
+		lineageTag: 74e5b2c5-f919-535b-b0f5-b473f923bba2
+		summarizeBy: none
+		sourceColumn: month_short
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Year and month, for example 2026-09.
+	column 'Year Month'
+		dataType: string
+		lineageTag: 9af9bf23-a47f-50ff-9997-eb699ed11c22
+		summarizeBy: none
+		sourceColumn: year_month
+		sortByColumn: 'Month Start'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Calendar quarter, Q1 to Q4.
+	column Quarter
+		dataType: string
+		lineageTag: 9f557ea2-156e-5d66-90d9-47ff414afdfd
+		summarizeBy: none
+		sourceColumn: quarter_label
+		sortByColumn: 'Quarter Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True on Saturdays and Sundays.
+	column 'Is Weekend'
+		dataType: boolean
+		lineageTag: 4be73439-d9e8-5111-a131-d67939bd49c4
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Start'
+		dataType: dateTime
+		isHidden
+		formatString: mm/dd/yyyy
+		lineageTag: 55f97aab-6df9-53d5-8dfe-f35b5d36a0e7
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(GoldFile("dim_date.parquet")),
+				    Selected = Table.SelectColumns(Source, {"date_id", "date_key", "year", "quarter", "month", "month_short", "year_month", "quarter_label", "is_weekend", "month_start"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"date_id", Int64.Type}, {"year", Int64.Type}, {"quarter", Int64.Type}, {"month", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

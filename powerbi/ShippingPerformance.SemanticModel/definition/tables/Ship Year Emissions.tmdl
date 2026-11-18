@@ -1,0 +1,194 @@
+/// Fact table. Grain: one row per ship and EU MRV reporting year (2018 to 2025). Linked to the date table on 31 December of the year.
+table 'Ship Year Emissions'
+	lineageTag: 6b2aa9af-57e9-561c-8641-168da6281837
+
+	column ship_version_key
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: 85e7d5cb-a5b5-5165-a034-ebea0ca7d219
+		summarizeBy: none
+		sourceColumn: ship_version_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_id
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: 620fbdca-8b49-5b22-a627-ef4edd89b7b8
+		summarizeBy: none
+		sourceColumn: segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_id
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: f9c5cacc-5835-5afd-b761-22332fc0a86b
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// MRV reporting year.
+	column 'Reporting Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: a17512a3-8be9-5f23-9e98-4250ea60de8f
+		summarizeBy: none
+		sourceColumn: reporting_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_t
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 97170257-b895-5ae9-abc5-db88f563d7de
+		summarizeBy: none
+		sourceColumn: fuel_t
+
+		annotation SummarizationSetBy = Automatic
+
+	column co2_t
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: f12a8be1-cb9a-5242-b1fc-1289863668f9
+		summarizeBy: none
+		sourceColumn: co2_t
+
+		annotation SummarizationSetBy = Automatic
+
+	column distance_nm
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: aa8cf541-7b0f-59eb-a0e1-82d3fa9bff5b
+		summarizeBy: none
+		sourceColumn: distance_nm
+
+		annotation SummarizationSetBy = Automatic
+
+	column hours_at_sea
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 8a3d4c40-be0d-510f-bb82-1979a5428b8f
+		summarizeBy: none
+		sourceColumn: hours_at_sea
+
+		annotation SummarizationSetBy = Automatic
+
+	column transport_work_tonne_nm
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 3020f6c5-c889-5d41-8514-b5d6f54d09d0
+		summarizeBy: none
+		sourceColumn: transport_work_tonne_nm
+
+		annotation SummarizationSetBy = Automatic
+
+	column co2_ets_scope_t
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: d2e536ea-57fc-57e2-9b75-8bf4866a89e5
+		summarizeBy: none
+		sourceColumn: co2_ets_scope_t
+
+		annotation SummarizationSetBy = Automatic
+
+	column eua_due_t
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 26bb3d09-e7e2-53f5-a207-b59254949561
+		summarizeBy: none
+		sourceColumn: eua_due_t
+
+		annotation SummarizationSetBy = Automatic
+
+	column ets_cost_eur
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 8610b7ac-ede3-5a91-a7ea-ccebb94bb098
+		summarizeBy: none
+		sourceColumn: ets_cost_eur
+
+		annotation SummarizationSetBy = Automatic
+
+	column cii_ratio
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 09001036-521e-5577-a385-f78e102e3a1b
+		summarizeBy: none
+		sourceColumn: cii_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+	/// IMO carbon intensity rating, A best to E worst (approximation on the MRV scope).
+	column 'CII Rating'
+		dataType: string
+		lineageTag: 7bbf0ef8-ee54-5a39-94da-f7ed2753fecc
+		summarizeBy: none
+		sourceColumn: cii_rating
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Rating of the same ship in the previous reporting year.
+	column 'CII Rating Previous Year'
+		dataType: string
+		lineageTag: 30d1a00b-197e-5f3f-9b8f-00e2770e504d
+		summarizeBy: none
+		sourceColumn: cii_rating_prev
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True when the rating letter is worse than the year before.
+	column 'Rating Worsened'
+		dataType: boolean
+		lineageTag: 255d673d-5626-5252-9df5-67cfe8447918
+		summarizeBy: none
+		sourceColumn: is_rating_worse
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True from 2023, the first year ratings apply under IMO rules.
+	column 'Official CII Year'
+		dataType: boolean
+		lineageTag: e0b1c2ee-11bb-5773-9e2d-9effefdc6125
+		summarizeBy: none
+		sourceColumn: is_official_cii_year
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True when distance, speed and carbon factor are physically plausible.
+	column 'Passes Quality Checks'
+		dataType: boolean
+		lineageTag: f39ec21e-a654-5d73-8201-371549d2ff8b
+		summarizeBy: none
+		sourceColumn: is_quality_ok
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Ship Year Emissions' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(GoldFile("fct_ship_year_emissions.parquet")),
+				    Selected = Table.SelectColumns(Source, {"ship_version_key", "segment_id", "date_id", "reporting_year", "fuel_t", "co2_t", "distance_nm", "hours_at_sea", "transport_work_tonne_nm", "co2_ets_scope_t", "eua_due_t", "ets_cost_eur", "cii_ratio", "cii_rating", "cii_rating_prev", "is_rating_worse", "is_official_cii_year", "is_quality_ok"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"fuel_t", Currency.Type}, {"co2_t", Currency.Type}, {"distance_nm", Currency.Type}, {"hours_at_sea", Currency.Type}, {"transport_work_tonne_nm", Currency.Type}, {"co2_ets_scope_t", Currency.Type}, {"eua_due_t", Currency.Type}, {"ets_cost_eur", Currency.Type}, {"cii_ratio", Currency.Type}, {"ship_version_key", Int64.Type}, {"segment_id", Int64.Type}, {"date_id", Int64.Type}, {"reporting_year", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

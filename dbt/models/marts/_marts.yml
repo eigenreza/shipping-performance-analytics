@@ -1,0 +1,156 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: Calendar table, one row per day from 2018-01-01 to the data end date. Marked as the date table in Power BI.
+    columns:
+      - name: date_key
+        description: Calendar date (primary key).
+        tests: [unique, not_null, not_after_data_end]
+
+  - name: dim_segment
+    description: The two fleet segments, vehicle carriers and ro-ro ships, with a plain description.
+    columns:
+      - name: segment_key
+        tests: [unique, not_null]
+
+  - name: dim_ship
+    description: >
+      Pseudonymous ship dimension, slowly changing type 2. One row per ship version. A new version starts when
+      segment, flag region, flag state, ice class or technical index type changes between reporting years.
+      No ship names, IMO numbers or call signs are carried.
+    columns:
+      - name: ship_version_key
+        description: Surrogate key of the ship version (point-in-time key).
+        tests: [unique, not_null]
+      - name: ship_key
+        description: Durable surrogate key of the ship across versions.
+        tests: [not_null]
+      - name: ship_pseudonym
+        description: Stable public label such as "Carrier 017" or "Ro-ro 042".
+        tests: [not_null]
+      - name: valid_from_year
+        description: First reporting year of this version.
+      - name: valid_to_year
+        description: Last reporting year of this version.
+      - name: is_current
+        description: True for the latest version of each ship.
+      - name: gross_tonnage
+        description: Gross tonnage, reported (Kystverket) or estimated from AIS length and beam, see tonnage_method.
+        tests:
+          - accepted_range:
+              arguments: {min_value: 1000, max_value: 120000}
+      - name: size_class
+        description: Size band in gross tonnage, aligned with the CII reference line bands for vehicle carriers.
+      - name: design_generation
+        description: EEDI generation (contracted 2013 or later, reported an EEDI) or pre-EEDI. Used as a build-era proxy.
+
+  - name: dim_port
+    description: Norwegian ports at UN/LOCODE level from the Kystverket location register.
+    columns:
+      - name: port_key
+        description: UN/LOCODE of the port.
+        tests: [unique, not_null]
+
+  - name: fct_ship_year_emissions
+    description: >
+      Grain: one row per ship and MRV reporting year. Fuel, CO2, distance, time at sea, speed, EU ETS exposure
+      and the CII rating (approximation on the MRV scope).
+    tests:
+      - unique:
+          arguments:
+            column_name: "ship_key || '-' || reporting_year"
+    columns:
+      - name: ship_key
+        tests: [not_null]
+      - name: ship_version_key
+        tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dim_ship'), field: ship_version_key}
+      - name: segment_key
+        tests:
+          - relationships:
+              arguments: {to: ref('dim_segment'), field: segment_key}
+      - name: date_key
+        description: 31 December of the reporting year, so yearly facts line up with the date table.
+        tests:
+          - relationships:
+              arguments: {to: ref('dim_date'), field: date_key}
+      - name: reporting_year
+        tests:
+          - accepted_range:
+              arguments: {min_value: 2018, max_value: 2026}
+      - name: co2_t
+        description: Total CO2 emitted in the MRV scope (tonnes).
+        tests:
+          - not_null
+          - accepted_range:
+              arguments: {min_value: 0}
+      - name: avg_speed_kn
+        description: Distance divided by hours at sea (knots).
+      - name: ets_surrender_share
+        tests:
+          - accepted_range:
+              arguments: {min_value: 0, max_value: 1}
+      - name: cii_rating
+        description: CII rating A (best) to E (worst).
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['A', 'B', 'C', 'D', 'E']
+
+  - name: fct_port_call
+    description: Grain is one row per AIS-derived port call in Norway (ship, port, berth period), with anchorage waiting time.
+    columns:
+      - name: port_call_key
+        tests: [unique, not_null]
+      - name: port_key
+        tests:
+          - relationships:
+              arguments: {to: ref('dim_port'), field: port_key}
+      - name: date_key
+        tests:
+          - not_after_data_end
+          - max_date_within:
+              arguments: {days: 7}
+          - relationships:
+              arguments: {to: ref('dim_date'), field: date_key}
+      - name: waiting_hours
+        tests:
+          - accepted_range:
+              arguments: {min_value: 0, max_value: 24}
+      - name: berth_hours
+        tests:
+          - accepted_range:
+              arguments: {min_value: 0}
+
+  - name: fct_voyage_leg
+    description: Grain is one row per voyage leg between consecutive port calls, with track distance, speed and weather.
+    columns:
+      - name: voyage_leg_key
+        tests: [unique, not_null]
+      - name: date_key
+        tests: [not_after_data_end]
+      - name: avg_speed_kn
+        tests:
+          - accepted_range:
+              arguments: {min_value: 0, max_value: 30}
+
+  - name: fct_daily_carbon_price
+    description: Grain is one row per day. EU ETS allowance price, EUR per tonne CO2.
+    columns:
+      - name: date_key
+        tests:
+          - unique
+          - not_null
+          - not_after_data_end
+          - max_date_within:
+              arguments: {days: 7}
+          - relationships:
+              arguments: {to: ref('dim_date'), field: date_key}
+      - name: eua_price_eur_per_t
+        tests:
+          - not_null
+          - accepted_range:
+              arguments: {min_value: 1, max_value: 200}

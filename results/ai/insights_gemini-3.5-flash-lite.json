@@ -1,0 +1,318 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "label": "Gemini 3.5 Flash Lite (free tier)",
+  "pages": [
+    {
+      "page": "overview",
+      "model": "gemini-3.5-flash-lite",
+      "latency_s": 1.001,
+      "input_tokens": 401,
+      "output_tokens": 223,
+      "findings": [
+        {
+          "text": "The total number of ro-ro ships increased from 226 in 2023 to 243 in 2025, while vehicle carriers grew from 461 to 533 over the same period.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "226",
+              "supported": true,
+              "matched": 226.0
+            },
+            {
+              "text": "243",
+              "supported": true,
+              "matched": 243.0
+            },
+            {
+              "text": "461",
+              "supported": true,
+              "matched": 461.0
+            },
+            {
+              "text": "533",
+              "supported": true,
+              "matched": 533.0
+            }
+          ]
+        },
+        {
+          "text": "Ro-ro ship CO2 emissions decreased slightly from 5,469,398 tonnes in 2023 to 5,349,454 tonnes in 2025, whereas vehicle carrier emissions rose from 4,166,581 tonnes to 4,300,770 tonnes.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "5,469,398",
+              "supported": true,
+              "matched": 5469398.0
+            },
+            {
+              "text": "5,349,454",
+              "supported": true,
+              "matched": 5349454.0
+            },
+            {
+              "text": "4,166,581",
+              "supported": true,
+              "matched": 4166581.0
+            },
+            {
+              "text": "4,300,770",
+              "supported": true,
+              "matched": 4300770.0
+            }
+          ]
+        },
+        {
+          "text": "ETS costs for ro-ro ships reached 213,570,794 EUR in 2025, up from 107,653,764 EUR in 2024, while vehicle carrier ETS costs grew from 67,082,421 EUR to 136,165,586 EUR.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "213,570,794",
+              "supported": true,
+              "matched": 213570794.0
+            },
+            {
+              "text": "107,653,764",
+              "supported": true,
+              "matched": 107653764.0
+            },
+            {
+              "text": "67,082,421",
+              "supported": true,
+              "matched": 67082421.0
+            },
+            {
+              "text": "136,165,586",
+              "supported": true,
+              "matched": 136165586.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "efficiency",
+      "model": "gemini-3.5-flash-lite",
+      "latency_s": 1.864,
+      "input_tokens": 491,
+      "output_tokens": 153,
+      "findings": [
+        {
+          "text": "For ro-ro ships, carbon emissions steadily declined from 363.6 kg per nautical mile in 2021 to 340.2 kg per nautical mile in 2025.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "363.6",
+              "supported": true,
+              "matched": 363.6
+            },
+            {
+              "text": "340.2",
+              "supported": true,
+              "matched": 340.2
+            }
+          ]
+        },
+        {
+          "text": "Vehicle carriers emitted 310.9 kg of CO2 per nautical mile in 2021 and reached their lowest emission level of 287.1 kg per nautical mile in 2025.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "310.9",
+              "supported": true,
+              "matched": 310.9
+            },
+            {
+              "text": "287.1",
+              "supported": true,
+              "matched": 287.1
+            }
+          ]
+        },
+        {
+          "text": "Average speeds for ro-ro ships ranged between 14.31 and 14.89 knots over the five-year period, while vehicle carriers operated between 13.91 and 14.35 knots.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "14.31",
+              "supported": true,
+              "matched": 14.31
+            },
+            {
+              "text": "14.89",
+              "supported": true,
+              "matched": 14.89
+            },
+            {
+              "text": "13.91",
+              "supported": true,
+              "matched": 13.91
+            },
+            {
+              "text": "14.35",
+              "supported": true,
+              "matched": 14.34
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "ratings",
+      "model": "gemini-3.5-flash-lite",
+      "latency_s": 10.204,
+      "input_tokens": 414,
+      "output_tokens": 123,
+      "findings": [
+        {
+          "text": "In 2025, vehicle carriers had a higher share of top carbon ratings at 32.5% compared to 26.1% for ro-ro ships.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "32.5%",
+              "supported": true,
+              "matched": 32.5
+            },
+            {
+              "text": "26.1%",
+              "supported": true,
+              "matched": 26.1
+            }
+          ]
+        },
+        {
+          "text": "Vehicle carriers with poor carbon ratings of D or E decreased from 43.0% in 2023 to 37.8% in 2025.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "43.0%",
+              "supported": true,
+              "matched": 43.0
+            },
+            {
+              "text": "37.8%",
+              "supported": true,
+              "matched": 37.8
+            }
+          ]
+        },
+        {
+          "text": "The total number of rated ship-years for vehicle carriers grew from 416 in 2023 to 431 in 2025.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "416",
+              "supported": true,
+              "matched": 416.0
+            },
+            {
+              "text": "431",
+              "supported": true,
+              "matched": 431.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "ports",
+      "model": "gemini-3.5-flash-lite",
+      "latency_s": 9.672,
+      "input_tokens": 381,
+      "output_tokens": 78,
+      "findings": [
+        {
+          "text": "Stavanger recorded the highest number of port calls on the Norwegian coast with 87 visits between August and September 2026.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "87",
+              "supported": true,
+              "matched": 87.0
+            }
+          ]
+        },
+        {
+          "text": "Drammen registered the longest median berth time among the top ports at 8.5 hours.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "8.5",
+              "supported": true,
+              "matched": 8.5
+            }
+          ]
+        },
+        {
+          "text": "All listed ports reported a 0.0 percent share of calls experiencing waiting time.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "0.0 percent",
+              "supported": true,
+              "matched": 0.028571
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": "carbon_price",
+      "model": "gemini-3.5-flash-lite",
+      "latency_s": 7.966,
+      "input_tokens": 403,
+      "output_tokens": 119,
+      "findings": [
+        {
+          "text": "The average EU ETS allowance price rose from EUR 15.98 per tonne in 2018 to EUR 85.30 per tonne in 2023.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "15.98",
+              "supported": true,
+              "matched": 15.98
+            },
+            {
+              "text": "85.30",
+              "supported": true,
+              "matched": 85.3
+            }
+          ]
+        },
+        {
+          "text": "The highest recorded allowance price reached a peak of EUR 100.34 per tonne in 2023.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "100.34",
+              "supported": true,
+              "matched": 100.34
+            }
+          ]
+        },
+        {
+          "text": "In 2024, the average allowance price decreased to EUR 66.58 per tonne before increasing to EUR 79.11 per tonne by 2026.",
+          "status": "supported",
+          "numbers": [
+            {
+              "text": "66.58",
+              "supported": true,
+              "matched": 66.58
+            },
+            {
+              "text": "79.11",
+              "supported": true,
+              "matched": 79.11
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stopped": null,
+  "findings": 15,
+  "supported": 15,
+  "unsupported": 0,
+  "no_numbers": 0,
+  "share_supported": 1.0,
+  "share_unsupported": 0.0
+}

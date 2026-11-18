@@ -1,0 +1,48 @@
+/// Fact table. Grain: one row per day. EU ETS allowance price (front December contract) in EUR per tonne of CO2.
+table 'Carbon Price'
+	lineageTag: 4ff07891-f088-5ec9-9939-7a596baaec55
+
+	column date_id
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: 091233ae-7d40-5e19-b738-cc20ff1b6510
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		isAvailableInMdx: false
+		lineageTag: 3932f140-6466-5076-b9f2-58fe723019b1
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column eua_price_eur_per_t
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 573e223b-c80e-522c-9bfc-afdbe107fdc8
+		summarizeBy: none
+		sourceColumn: eua_price_eur_per_t
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Carbon Price' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(GoldFile("fct_daily_carbon_price.parquet")),
+				    Selected = Table.SelectColumns(Source, {"date_id", "date_key", "eua_price_eur_per_t"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"eua_price_eur_per_t", Currency.Type}, {"date_id", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,52 @@
+[
+  {
+    "check": "Freshness: AIS positions",
+    "detail": "latest 2026-09-30, 245,894 rows, 0 days before the data end date (limit 2)",
+    "status": "ok"
+  },
+  {
+    "check": "Freshness: AIS-derived port calls",
+    "detail": "latest 2026-09-30, 666 rows, 0 days before the data end date (limit 7)",
+    "status": "ok"
+  },
+  {
+    "check": "Freshness: Carbon price",
+    "detail": "latest 2026-09-30, 3,195 rows, 0 days before the data end date (limit 7)",
+    "status": "ok"
+  },
+  {
+    "check": "Freshness: Weather (wind)",
+    "detail": "latest 2026-09-30, 1,006,848 rows, 0 days before the data end date (limit 2)",
+    "status": "ok"
+  },
+  {
+    "check": "Freshness: Weather (waves)",
+    "detail": "latest 2026-09-30, 358,416 rows, 0 days before the data end date (limit 2)",
+    "status": "ok"
+  },
+  {
+    "check": "Freshness: EU MRV reports",
+    "detail": "latest reporting year 2025",
+    "status": "ok"
+  },
+  {
+    "check": "Quality: plausible MRV ship-years",
+    "detail": "98.4% of 5,692 ship-years pass distance, speed and carbon factor checks",
+    "status": "ok"
+  },
+  {
+    "check": "Quality: port calls confirmed by Kystverket records",
+    "detail": "63.0% of 664 AIS-derived calls have a Kystverket record within 12 hours",
+    "status": "ok"
+  },
+  {
+    "check": "Quality: ships with known or estimated gross tonnage",
+    "detail": "89.3% of fleet ships",
+    "status": "ok"
+  },
+  {
+    "check": "dbt tests",
+    "detail": "68 of 68 tests pass",
+    "status": "ok"
+  }
+]

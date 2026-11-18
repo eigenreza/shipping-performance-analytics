@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "04ef0f593a655f6c8362",
+  "position": {
+    "x": 16,
+    "y": 52,
+    "z": 2000,
+    "width": 1248,
+    "height": 74,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "What this is: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Fuel, CO2, EU ETS cost and carbon ratings of ro-ro ships and vehicle carriers that report to the EU MRV system, 2018 to 2025.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "How to use it: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Pick a segment or year below, or use the bookmarks (View > Bookmarks). Right-click a ship to open its profile.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "What to notice: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "CO2 per nautical mile changes slowly, while EU ETS cost jumps in 2024 and 2025 as the scheme phases in.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

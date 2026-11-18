@@ -1,0 +1,30 @@
+/// What-if parameter: fuel price in EUR per tonne (default 550, a documented assumption).
+table 'Fuel Price'
+	lineageTag: e84d2f13-3b66-50e8-8887-950c0f2488d9
+
+	/// Value chosen with the Fuel Price parameter (default 550).
+	measure 'Fuel Price Value' = SELECTEDVALUE('Fuel Price'[Fuel Price], 550)
+		formatString: #,0
+		displayFolder: Scenarios
+		lineageTag: f6f4d5d1-13e9-54f4-8dc9-8c2a025435dc
+
+	column 'Fuel Price'
+		dataType: decimal
+		formatString: #,0
+		lineageTag: 02d9b406-aa93-525d-be2a-109efd26c23b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Fuel Price' = calculated
+		mode: import
+		source = GENERATESERIES(CURRENCY(300), CURRENCY(1000), CURRENCY(25))
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["ENSURE_TABLES_HAVE_RELATIONSHIPS", "REDUCE_USAGE_OF_CALCULATED_TABLES"]}
+

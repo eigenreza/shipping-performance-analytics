@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "8aa5e9ac46df5f078221",
+  "position": {
+    "x": 16,
+    "y": 52,
+    "z": 2000,
+    "width": 1248,
+    "height": 74,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "What this is: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "A self-service page: choose any metric and any time calculation and slice it by segment, size, flag region or design generation.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "How to use it: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Pick one metric in the first box and one time calculation (for example Year over Year %) in the second. Edit the report to drag other fields onto the matrix.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "What to notice: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#1F4E79",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "The same measures and definitions are used on every page, so numbers here match the other pages.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#1B2A3A"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

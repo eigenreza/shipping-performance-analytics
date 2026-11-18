@@ -1,0 +1,15 @@
+/// Where the gold Parquet files are read from: the repository's raw GitHub URL, or a local folder such as
+/// C:\code\shipping-performance-analytics\data\exports\gold after cloning.
+expression DataFolder = "https://raw.githubusercontent.com/eigenreza/shipping-performance-analytics/main/data/exports/gold" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 897d618b-20bd-501c-bf25-e2413fac1181
+
+	annotation PBI_ResultType = Text
+
+/// Returns the bytes of one gold Parquet file from DataFolder (web or local).
+expression GoldFile =
+		(name as text) as binary =>
+		    if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "/" & name) else File.Contents(DataFolder & "\" & name)
+	lineageTag: 47fe6c4f-03ef-5a0d-8005-6c86e476eddf
+
+	annotation PBI_ResultType = Function
+

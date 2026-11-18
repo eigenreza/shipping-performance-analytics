@@ -1,0 +1,458 @@
+{
+  "summary": {
+    "measures_evaluated": 57,
+    "measures_without_error": 57,
+    "reconciliation_checks": 48,
+    "reconciliation_matches": 48,
+    "tolerance": 1e-06,
+    "ship_context_measures_ok": 5,
+    "ship_context_measures": 5,
+    "rls_roles_passed": 2,
+    "rls_roles": 2
+  },
+  "checks": [
+    {
+      "check": "co2_total",
+      "measure": "CO2 (t)",
+      "filter": "none",
+      "dax": 80629915.3772,
+      "sql": 80629915.37567998,
+      "match": true
+    },
+    {
+      "check": "fuel_total",
+      "measure": "Fuel (t)",
+      "filter": "none",
+      "dax": 25845927.9872,
+      "sql": 25845927.98713397,
+      "match": true
+    },
+    {
+      "check": "ships_reporting",
+      "measure": "Ships Reporting",
+      "filter": "none",
+      "dax": 1042,
+      "sql": 1042.0,
+      "match": true
+    },
+    {
+      "check": "ets_cost_total",
+      "measure": "EU ETS Cost (EUR)",
+      "filter": "none",
+      "dax": 524472564.4114,
+      "sql": 524472564.4125586,
+      "match": true
+    },
+    {
+      "check": "allowances_total",
+      "measure": "Allowances Due (t)",
+      "filter": "none",
+      "dax": 7291641.5547,
+      "sql": 7291641.5548275085,
+      "match": true
+    },
+    {
+      "check": "port_calls",
+      "measure": "Port Calls",
+      "filter": "none",
+      "dax": 666,
+      "sql": 666.0,
+      "match": true
+    },
+    {
+      "check": "leg_distance",
+      "measure": "Leg Distance (nm)",
+      "filter": "none",
+      "dax": 83494.5788,
+      "sql": 83494.57778561718,
+      "match": true
+    },
+    {
+      "check": "eua_avg",
+      "measure": "Average EUA Price (EUR/t)",
+      "filter": "none",
+      "dax": 55.5859,
+      "sql": 55.58592488262908,
+      "match": true
+    },
+    {
+      "check": "co2_2019_vc",
+      "measure": "CO2 (t)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2019, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 4820239.9997,
+      "sql": 4820239.9997000005,
+      "match": true
+    },
+    {
+      "check": "co2_per_nm_2019_vc",
+      "measure": "CO2 per nm (kg)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2019, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 317.39224866267244,
+      "sql": 317.39224865963394,
+      "match": true
+    },
+    {
+      "check": "speed_2019_vc",
+      "measure": "Average Speed (kn)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2019, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 13.65938970399105,
+      "sql": 13.65938970412182,
+      "match": true
+    },
+    {
+      "check": "share_de_2019_vc",
+      "measure": "Share Rated D or E",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2019, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 0.3316831683168317,
+      "sql": 0.3316831683168317,
+      "match": true
+    },
+    {
+      "check": "ets_cost_2019_vc",
+      "measure": "EU ETS Cost (EUR)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2019, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 0,
+      "sql": 0.0,
+      "match": true
+    },
+    {
+      "check": "co2_2019_roro",
+      "measure": "CO2 (t)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2019, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 6214066.3771,
+      "sql": 6214066.377099996,
+      "match": true
+    },
+    {
+      "check": "co2_per_nm_2019_roro",
+      "measure": "CO2 per nm (kg)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2019, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 351.855731040674,
+      "sql": 351.8557310510493,
+      "match": true
+    },
+    {
+      "check": "speed_2019_roro",
+      "measure": "Average Speed (kn)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2019, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 14.513971696655096,
+      "sql": 14.513971696227104,
+      "match": true
+    },
+    {
+      "check": "share_de_2019_roro",
+      "measure": "Share Rated D or E",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2019, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 0.3423076923076923,
+      "sql": 0.3423076923076923,
+      "match": true
+    },
+    {
+      "check": "ets_cost_2019_roro",
+      "measure": "EU ETS Cost (EUR)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2019, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 0,
+      "sql": 0.0,
+      "match": true
+    },
+    {
+      "check": "co2_2023_vc",
+      "measure": "CO2 (t)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2023, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 4166580.68,
+      "sql": 4166580.680000004,
+      "match": true
+    },
+    {
+      "check": "co2_per_nm_2023_vc",
+      "measure": "CO2 per nm (kg)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2023, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 311.5295230195034,
+      "sql": 311.5295230267329,
+      "match": true
+    },
+    {
+      "check": "speed_2023_vc",
+      "measure": "Average Speed (kn)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2023, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 14.34235492239953,
+      "sql": 14.342354922066704,
+      "match": true
+    },
+    {
+      "check": "share_de_2023_vc",
+      "measure": "Share Rated D or E",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2023, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 0.43028846153846156,
+      "sql": 0.43028846153846156,
+      "match": true
+    },
+    {
+      "check": "ets_cost_2023_vc",
+      "measure": "EU ETS Cost (EUR)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2023, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 0,
+      "sql": 0.0,
+      "match": true
+    },
+    {
+      "check": "co2_2023_roro",
+      "measure": "CO2 (t)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2023, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 5469397.5654,
+      "sql": 5469397.565439998,
+      "match": true
+    },
+    {
+      "check": "co2_per_nm_2023_roro",
+      "measure": "CO2 per nm (kg)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2023, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 352.0000785629901,
+      "sql": 352.00007857352875,
+      "match": true
+    },
+    {
+      "check": "speed_2023_roro",
+      "measure": "Average Speed (kn)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2023, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 14.524316328461234,
+      "sql": 14.524316328132937,
+      "match": true
+    },
+    {
+      "check": "share_de_2023_roro",
+      "measure": "Share Rated D or E",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2023, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 0.3427230046948357,
+      "sql": 0.3427230046948357,
+      "match": true
+    },
+    {
+      "check": "ets_cost_2023_roro",
+      "measure": "EU ETS Cost (EUR)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2023, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 0,
+      "sql": 0.0,
+      "match": true
+    },
+    {
+      "check": "co2_2024_vc",
+      "measure": "CO2 (t)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2024, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 4336274.0225,
+      "sql": 4336274.021470001,
+      "match": true
+    },
+    {
+      "check": "co2_per_nm_2024_vc",
+      "measure": "CO2 per nm (kg)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2024, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 300.44951354379555,
+      "sql": 300.44951351244043,
+      "match": true
+    },
+    {
+      "check": "speed_2024_vc",
+      "measure": "Average Speed (kn)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2024, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 14.347499494797303,
+      "sql": 14.347499493018669,
+      "match": true
+    },
+    {
+      "check": "share_de_2024_vc",
+      "measure": "Share Rated D or E",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2024, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 0.41277641277641275,
+      "sql": 0.41277641277641275,
+      "match": true
+    },
+    {
+      "check": "ets_cost_2024_vc",
+      "measure": "EU ETS Cost (EUR)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2024, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 67082420.8609,
+      "sql": 67082420.86125422,
+      "match": true
+    },
+    {
+      "check": "co2_2024_roro",
+      "measure": "CO2 (t)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2024, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 5341624.5402,
+      "sql": 5341624.5397700025,
+      "match": true
+    },
+    {
+      "check": "co2_per_nm_2024_roro",
+      "measure": "CO2 per nm (kg)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2024, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 346.10707492975195,
+      "sql": 346.10707491427945,
+      "match": true
+    },
+    {
+      "check": "speed_2024_roro",
+      "measure": "Average Speed (kn)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2024, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 14.313609331188463,
+      "sql": 14.313609330592524,
+      "match": true
+    },
+    {
+      "check": "share_de_2024_roro",
+      "measure": "Share Rated D or E",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2024, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 0.3474178403755869,
+      "sql": 0.3474178403755869,
+      "match": true
+    },
+    {
+      "check": "ets_cost_2024_roro",
+      "measure": "EU ETS Cost (EUR)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2024, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 107653763.6426,
+      "sql": 107653763.64269266,
+      "match": true
+    },
+    {
+      "check": "co2_2025_vc",
+      "measure": "CO2 (t)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2025, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 4300769.6795,
+      "sql": 4300769.679139998,
+      "match": true
+    },
+    {
+      "check": "co2_per_nm_2025_vc",
+      "measure": "CO2 per nm (kg)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2025, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 287.0686945415718,
+      "sql": 287.06869453676927,
+      "match": true
+    },
+    {
+      "check": "speed_2025_vc",
+      "measure": "Average Speed (kn)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2025, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 14.101631519265178,
+      "sql": 14.101631518386231,
+      "match": true
+    },
+    {
+      "check": "share_de_2025_vc",
+      "measure": "Share Rated D or E",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2025, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 0.37819025522041766,
+      "sql": 0.37819025522041766,
+      "match": true
+    },
+    {
+      "check": "ets_cost_2025_vc",
+      "measure": "EU ETS Cost (EUR)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2025, Segment[Segment] = \"Vehicle carrier\"",
+      "dax": 136165586.2921,
+      "sql": 136165586.29281035,
+      "match": true
+    },
+    {
+      "check": "co2_2025_roro",
+      "measure": "CO2 (t)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2025, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 5349453.9927,
+      "sql": 5349453.9929599995,
+      "match": true
+    },
+    {
+      "check": "co2_per_nm_2025_roro",
+      "measure": "CO2 per nm (kg)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2025, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 340.1601348750754,
+      "sql": 340.1601349111313,
+      "match": true
+    },
+    {
+      "check": "speed_2025_roro",
+      "measure": "Average Speed (kn)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2025, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 14.556393094352766,
+      "sql": 14.556393093517332,
+      "match": true
+    },
+    {
+      "check": "share_de_2025_roro",
+      "measure": "Share Rated D or E",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2025, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 0.35585585585585583,
+      "sql": 0.35585585585585583,
+      "match": true
+    },
+    {
+      "check": "ets_cost_2025_roro",
+      "measure": "EU ETS Cost (EUR)",
+      "filter": "'Ship Year Emissions'[Reporting Year] = 2025, Segment[Segment] = \"Ro-ro ship\"",
+      "dax": 213570793.6158,
+      "sql": 213570793.61580124,
+      "match": true
+    }
+  ],
+  "ship_context": [
+    {
+      "measure": "Efficiency Rank",
+      "context": "one ship, 2025",
+      "ok": true,
+      "value": 1,
+      "error": null
+    },
+    {
+      "measure": "Segment Peer CO2 per nm (kg)",
+      "context": "one ship, 2025",
+      "ok": true,
+      "value": 287.0686945415718,
+      "error": null
+    },
+    {
+      "measure": "Variance vs Segment Peers",
+      "context": "one ship, 2025",
+      "ok": true,
+      "value": -0.05855540324542636,
+      "error": null
+    },
+    {
+      "measure": "Size-Class Peer CO2 per nm (kg)",
+      "context": "one ship, 2025",
+      "ok": true,
+      "value": 307.617418902059,
+      "error": null
+    },
+    {
+      "measure": "Variance vs Size-Class Peers",
+      "context": "one ship, 2025",
+      "ok": true,
+      "value": -0.12144353743635487,
+      "error": null
+    }
+  ],
+  "rls": [
+    {
+      "role": "Vehicle Carriers Only",
+      "segments_visible": 1,
+      "segment": "Vehicle carrier",
+      "ships_dax": 734,
+      "ships_sql": 734,
+      "calls_dax": 41,
+      "calls_sql": 41,
+      "pass": true
+    },
+    {
+      "role": "Ro-ro Ships Only",
+      "segments_visible": 1,
+      "segment": "Ro-ro ship",
+      "ships_dax": 394,
+      "ships_sql": 394,
+      "calls_dax": 625,
+      "calls_sql": 625,
+      "pass": true
+    }
+  ]
+}

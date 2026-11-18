@@ -1,0 +1,39 @@
+name: shipping_performance
+version: "1.0.0"
+config-version: 2
+profile: shipping_performance
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+analysis-paths: ["analyses"]
+target-path: "target"
+clean-targets: ["target", "logs"]
+
+vars:
+  # Folder holding the raw Parquet files. CI points this at small fixtures.
+  raw_path: "data/raw"  # relative to the repository root, where dbt runs
+  # Every AIS, port call and weather record must end on or before this date.
+  data_end_date: "2026-09-30"
+  # Salt for ship pseudonyms. Set SPA_PSEUDONYM_SALT locally; fixtures use the default.
+  pseudonym_salt: "{{ env_var('SPA_PSEUDONYM_SALT', 'fixture-salt') }}"
+  # Stop episodes shorter than this are treated as manoeuvring, not calls.
+  min_stop_minutes: 30
+  # A ship is stopped below this speed over ground (knots).
+  stop_speed_kn: 1.0
+
+models:
+  shipping_performance:
+    +materialized: table
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+    marts:
+      +schema: marts
+
+seeds:
+  shipping_performance:
+    +schema: reference

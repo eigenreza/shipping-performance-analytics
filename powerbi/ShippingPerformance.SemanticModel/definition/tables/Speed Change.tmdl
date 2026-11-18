@@ -1,0 +1,30 @@
+/// What-if parameter: speed change applied to every ship (negative = slower).
+table 'Speed Change'
+	lineageTag: 3ef40ab1-75c9-5624-ad89-2b8874f6fcc7
+
+	/// Value chosen with the Speed Change parameter (default -0.1).
+	measure 'Speed Change Value' = SELECTEDVALUE('Speed Change'[Speed Change], -0.1)
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Scenarios
+		lineageTag: a1e9faaa-375e-5b4f-b731-4c1d8c622e06
+
+	column 'Speed Change'
+		dataType: decimal
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		lineageTag: aa9a0f61-7bf6-5e1d-9c1c-382e59e6297f
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Speed Change' = calculated
+		mode: import
+		source = GENERATESERIES(CURRENCY(-0.2), CURRENCY(0.0), CURRENCY(0.01))
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["ENSURE_TABLES_HAVE_RELATIONSHIPS", "REDUCE_USAGE_OF_CALCULATED_TABLES"]}
+

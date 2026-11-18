@@ -1,0 +1,76 @@
+/// Norwegian ports at UN/LOCODE level from the Kystverket location register.
+table Port
+	lineageTag: d39cb5e1-a9e8-5456-9f98-6e884d305f7e
+
+	column 'Port Key'
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		isAvailableInMdx: false
+		lineageTag: 88b9c22d-c746-5517-bb0f-a7067499cc4c
+		summarizeBy: none
+		sourceColumn: port_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// UN/LOCODE of the port.
+	column 'Port Code'
+		dataType: string
+		lineageTag: a8395cdf-93a4-5bf3-8db3-ee9c6157e075
+		summarizeBy: none
+		sourceColumn: port_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Port name.
+	column Port
+		dataType: string
+		lineageTag: b554307b-3685-5acc-a5b9-05118b06dce9
+		summarizeBy: none
+		sourceColumn: port_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: decimal
+		formatString: 0.000
+		lineageTag: 5d0b1ea9-0766-5a95-90b5-dad7b1d44479
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: decimal
+		formatString: 0.000
+		lineageTag: 83c05f0c-efd4-5ab4-922f-7a38a69237db
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: lon
+
+		annotation SummarizationSetBy = Automatic
+
+	/// County of the port.
+	column County
+		dataType: string
+		lineageTag: e6953271-aa41-5296-87d9-70e012db4477
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: county_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Port = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(GoldFile("dim_port.parquet")),
+				    Selected = Table.SelectColumns(Source, {"port_id", "port_key", "port_name", "lat", "lon", "county_name"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"lat", Currency.Type}, {"lon", Currency.Type}, {"port_id", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

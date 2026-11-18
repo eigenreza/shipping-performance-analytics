@@ -1,0 +1,11 @@
+shipping_performance:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      path: "{{ env_var('SPA_WAREHOUSE', 'data/work/warehouse.duckdb') }}"
+      threads: 4
+    ci:
+      type: duckdb
+      path: "{{ env_var('SPA_WAREHOUSE', 'data/work/ci_warehouse.duckdb') }}"
+      threads: 2

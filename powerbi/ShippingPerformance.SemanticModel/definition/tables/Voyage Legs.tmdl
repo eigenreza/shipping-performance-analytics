@@ -1,0 +1,154 @@
+/// Fact table. Grain: one voyage leg between two consecutive port calls of the same ship on the Norwegian coast, with weather.
+table 'Voyage Legs'
+	lineageTag: c60b3579-b5da-5461-9daa-9f9157f17f0c
+
+	column voyage_leg_key
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: 6e7e54d5-c8c2-5cad-8ea3-afc68f0fdbed
+		summarizeBy: none
+		sourceColumn: voyage_leg_key
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs": ["UNNECESSARY_COLUMNS"]}
+
+	column ship_version_key
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: 95e8add3-1cf0-5082-a31d-a9b1278173e8
+		summarizeBy: none
+		sourceColumn: ship_version_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_id
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: ac61d17a-170c-5d89-ac95-849638baa6f7
+		summarizeBy: none
+		sourceColumn: segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin_port_id
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: aa999535-1963-5f57-8a67-91474dda2d37
+		summarizeBy: none
+		sourceColumn: origin_port_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column destination_port_id
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: 469e47fa-8959-5a05-a0b5-da27009265a8
+		summarizeBy: none
+		sourceColumn: destination_port_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_id
+		dataType: int64
+		isHidden
+		formatString: #,0
+		isAvailableInMdx: false
+		lineageTag: 9dbaa954-f0c0-54c4-b0f7-158a8a034265
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Departure from the origin port.
+	column 'Leg Departure (UTC)'
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn
+		lineageTag: 7a70cf48-701a-55e6-a0fe-d81c67eb4e35
+		summarizeBy: none
+		sourceColumn: departure_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Arrival in the destination port area.
+	column 'Leg Arrival (UTC)'
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn
+		lineageTag: 1c68ef9f-25ff-5676-9f06-3547a8393cfb
+		summarizeBy: none
+		sourceColumn: arrival_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column sailed_nm
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 6165f252-fbe7-57df-a392-9c18a228aae2
+		summarizeBy: none
+		sourceColumn: sailed_nm
+
+		annotation SummarizationSetBy = Automatic
+
+	column steaming_hours
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 3db14332-2e72-5874-a4d8-7d1074b25af0
+		summarizeBy: none
+		sourceColumn: steaming_hours
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_wind_ms
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 2537c517-4dc5-53fc-b22a-b9324e5e9191
+		summarizeBy: none
+		sourceColumn: avg_wind_ms
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_wave_m
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 54057bc0-70b1-5d72-9349-45c3fc1965f8
+		summarizeBy: none
+		sourceColumn: avg_wave_m
+
+		annotation SummarizationSetBy = Automatic
+
+	column rough_share
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: a7a79220-5b78-5127-9020-29f710cf8d9a
+		summarizeBy: none
+		sourceColumn: rough_share
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Voyage Legs' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(GoldFile("fct_voyage_leg.parquet")),
+				    Selected = Table.SelectColumns(Source, {"voyage_leg_key", "ship_version_key", "segment_id", "origin_port_id", "destination_port_id", "date_id", "departure_utc", "arrival_utc", "sailed_nm", "steaming_hours", "avg_wind_ms", "avg_wave_m", "rough_share"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"sailed_nm", Currency.Type}, {"steaming_hours", Currency.Type}, {"avg_wind_ms", Currency.Type}, {"avg_wave_m", Currency.Type}, {"rough_share", Currency.Type}, {"voyage_leg_key", Int64.Type}, {"ship_version_key", Int64.Type}, {"segment_id", Int64.Type}, {"origin_port_id", Int64.Type}, {"destination_port_id", Int64.Type}, {"date_id", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

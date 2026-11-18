@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: stg_mrv__ship_year
+    description: EU MRV reports for ro-ro ships and vehicle carriers with harmonised column names across the 2018 and 2024 formats.
+    tests:
+      - unique:
+          arguments:
+            column_name: "imo_number || '-' || reporting_year"
+    columns:
+      - name: imo_number
+        tests: [not_null]
+      - name: reporting_year
+        tests:
+          - not_null
+          - accepted_range:
+              arguments: {min_value: 2018, max_value: 2026}
+  - name: stg_carbon__eua_daily
+    description: Daily EU ETS allowance price.
+    columns:
+      - name: price_date
+        tests: [unique, not_null, not_after_data_end]
+  - name: stg_ais__static
+    description: AIS static records for fleet ships.
+  - name: stg_ais__positions
+    description: AIS positions of fleet ships.
+    columns:
+      - name: position_ts
+        tests: [not_null, not_after_data_end]
+  - name: stg_kystverket__port_calls
+    description: Kystverket port call records, de-duplicated, times in UTC.
+    columns:
+      - name: kv_call_id
+        tests: [unique, not_null]
+  - name: stg_kystverket__tonnage
+    description: Reported tonnage used for size calibration.
+  - name: stg_kystverket__locations
+    description: Kystverket location register.
+  - name: stg_weather__wind
+    description: Hourly wind per grid cell.
+    columns:
+      - name: hour_utc
+        tests: [not_after_data_end]
+  - name: stg_weather__waves
+    description: Hourly waves per grid cell.
+    columns:
+      - name: hour_utc
+        tests: [not_after_data_end]

@@ -1,0 +1,5 @@
+voyage_scope,emission_share,source_article
+between_eea_ports,1.00,Directive 2003/87/EC Art. 3ga and Annex I
+at_berth_in_eea_port,1.00,Directive 2003/87/EC Art. 3ga and Annex I
+departing_eea_to_non_eea,0.50,Directive 2003/87/EC Art. 3ga and Annex I
+arriving_eea_from_non_eea,0.50,Directive 2003/87/EC Art. 3ga and Annex I
